@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Protocolo de la Fiaca y el Cansancio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --principal: #4A3570;
+    --clara:     #573E85;
+    --suave:     #F0EBF8;
+    --borda:     #C8B0E8;
+    --bg-qt:     #F8F4FF;
+    --destaque:  #c8a96e;
+    --vtexto:    #C0A0E0;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda-sutil: #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#C0A0E0; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* SITUAÇÃO */
+  .situacao-wrap { background:var(--principal); padding:0 32px 24px; }
+  .situacao-box { background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 18px; }
+  .situacao-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+  .situacao-texto { font-size:13.5px; color:rgba(255,255,255,0.88); line-height:1.65; }
+  .situacao-solucao { font-size:13px; color:#C0A0E0; margin-top:8px; line-height:1.6; font-style:italic; }
+
+  /* FRASE */
+  .frase-wrap { padding:28px 32px; border-bottom:1px solid var(--borda-sutil); }
+  .frase { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a1a1a; }
+  .frase em { font-style:italic; color:var(--clara); }
+
+  /* PASSOS */
+  .corpo { padding:24px 32px 36px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:18px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda-sutil); }
+
+  .passo-card { border:1.5px solid var(--borda-sutil); border-radius:14px; overflow:hidden; margin-bottom:16px; }
+  .passo-header { background:var(--suave); padding:14px 18px; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--borda-sutil); }
+  .passo-num-wrap { display:flex; flex-direction:column; align-items:center; gap:2px; flex-shrink:0; }
+  .passo-emoji { font-size:22px; line-height:1; }
+  .passo-num { font-size:9px; font-weight:700; letter-spacing:1px; color:var(--clara); text-transform:uppercase; }
+  .passo-titulo { font-family:'Lora',serif; font-size:16px; font-weight:600; color:var(--texto); line-height:1.3; flex:1; }
+  .passo-body { padding:14px 18px 16px; }
+  .passo-texto { font-size:14px; color:var(--t-suave); line-height:1.72; margin-bottom:0; }
+  .dica-box { display:flex; gap:10px; align-items:flex-start; background:var(--bg-qt); border:1px solid var(--borda); border-radius:10px; padding:11px 13px; margin-top:12px; }
+  .dica-icon { font-size:15px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+
+  /* NÃO FAÇA */
+  .nao-wrap { background:var(--suave); border-radius:14px; padding:18px 20px; margin-bottom:20px; }
+  .nao-titulo { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:12px; }
+  .nao-lista { list-style:none; }
+  .nao-item { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid var(--borda); font-size:13.5px; color:var(--t-suave); line-height:1.5; }
+  .nao-item:last-child { border-bottom:none; }
+  .nao-icon { color:#cc3333; font-weight:700; font-size:14px; flex-shrink:0; margin-top:1px; }
+
+  /* LEMBRE */
+  .lembre-box { background:var(--principal); border-radius:14px; padding:20px 22px; text-align:center; }
+  .lembre-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+  .lembre-texto { font-family:'Lora',serif; font-size:17px; font-weight:600; color:white; line-height:1.45; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/protocolo-06.jpg" alt="Gatito durmiendo que representa la fiaca y el cansancio" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">😴 Fiaca y Cansancio · días difíciles</div>
+      <h1 class="hero-titulo">Protocolo de la <em>Fiaca</h1>
+      <p class="hero-desc">Para los días en que no tenés energía ni ganas. El truco es no dejar que el cansancio se convierta en abandono.</p>
+    </div>
+  </div>
+  <div class="situacao-wrap">
+    <div class="situacao-box">
+      <div class="situacao-label">Lo que suele pasar</div>
+      <p class="situacao-texto">Estás cansada, sin ganas de nada y con ganas de comerte todo lo que ves. El sillón, el chocolate y el delivery parecen la única salida. Y cuando pasa, aparece la culpa.</p>
+      <p class="situacao-solucao">Existe un modo mínimo de funcionamiento para los días difíciles. No te va a hacer bajar de peso más rápido. Pero va a evitar que vuelvas a foja cero.</p>
+    </div>
+  </div>
+  <div class="frase-wrap">
+    <p class="frase">No todos los días vas a estar motivada. Y está todo bien. El objetivo es seguir incluso los días en que las ganas no aparecen.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Qué hacer</div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">💧</span>
+          <span class="passo-num">01</span>
+        </div>
+        <div class="passo-titulo">Empezá solo con agua</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">Antes de decidir cualquier cosa, tomá 1 vaso grande de agua. El cansancio y el desgano muchas veces son deshidratación disfrazada. Esperá 10 minutos. Con frecuencia, la energía mejora sola.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Agregale limón u hojas de menta. El agua con sabor hidrata más porque tomás más.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🍳</span>
+          <span class="passo-num">02</span>
+        </div>
+        <div class="passo-titulo">La comida mínima aceptable</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">No hace falta cocinar. Pero sí comer algo de verdad. Huevos revueltos con queso, yogur natural, fruta con pasta de maní. Cualquier cosa con proteína que no sea ultraprocesada. El objetivo es no dejar que el vacío guíe las elecciones.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Huevos revueltos listos en 3 minutos. Es el alimento de emergencia oficial de cualquier día difícil.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🚶</span>
+          <span class="passo-num">03</span>
+        </div>
+        <div class="passo-titulo">5 minutos de movimiento, nada más</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">No hace falta entrenar. Solo levantate del sillón y caminá por la casa 5 minutos. O hacé 20 sentadillas. El movimiento rompe el ciclo de letargo, libera un poco de dopamina y cambia un poquito el estado mental.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Poné una música que te guste y caminá. Muchas veces los 5 minutos se vuelven 15 solos.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🛏️</span>
+          <span class="passo-num">04</span>
+        </div>
+        <div class="passo-titulo">Si necesitás descansar, descansá de verdad</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">Hay días en que lo mejor que podés hacer por tu cuerpo es descansar. Dormir una hora, acostarte sin pantalla, relajarte en serio. Eso no es fiaca, es recuperación. El problema es cuando el descanso se convierte en descontrol con la comida.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Descansar sin comida chatarra es productivo. Sillón con papitas y serie es otra historia.</p>
+        </div>
+      </div>
+    </div>
+    <div class="nao-wrap">
+      <div class="nao-titulo">Qué evitar en esta situación</div>
+      <ul class="nao-lista"><li class="nao-item"><span class="nao-icon">✗</span><span>Usar el cansancio como excusa para comer ultraprocesados</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Pasar el día sin comer y atacar a la noche</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Culparte por no haber entrenado</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Pedir delivery sin mirar las opciones con más proteína del menú</span></li></ul>
+    </div>
+    <div class="lembre-box">
+      <div class="lembre-label">Acordate siempre</div>
+      <p class="lembre-texto">Un día malo no borra tu proceso. Abandonar, sí.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

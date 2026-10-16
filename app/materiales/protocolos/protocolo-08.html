@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Protocolo del Fin de Semana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --principal: #7A4A00;
+    --clara:     #906000;
+    --suave:     #FDF4E4;
+    --borda:     #E8D098;
+    --bg-qt:     #FFFAF0;
+    --destaque:  #c8a96e;
+    --vtexto:    #E0B868;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda-sutil: #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#E0B868; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* SITUAÇÃO */
+  .situacao-wrap { background:var(--principal); padding:0 32px 24px; }
+  .situacao-box { background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 18px; }
+  .situacao-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+  .situacao-texto { font-size:13.5px; color:rgba(255,255,255,0.88); line-height:1.65; }
+  .situacao-solucao { font-size:13px; color:#E0B868; margin-top:8px; line-height:1.6; font-style:italic; }
+
+  /* FRASE */
+  .frase-wrap { padding:28px 32px; border-bottom:1px solid var(--borda-sutil); }
+  .frase { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a1a1a; }
+  .frase em { font-style:italic; color:var(--clara); }
+
+  /* PASSOS */
+  .corpo { padding:24px 32px 36px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:18px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda-sutil); }
+
+  .passo-card { border:1.5px solid var(--borda-sutil); border-radius:14px; overflow:hidden; margin-bottom:16px; }
+  .passo-header { background:var(--suave); padding:14px 18px; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--borda-sutil); }
+  .passo-num-wrap { display:flex; flex-direction:column; align-items:center; gap:2px; flex-shrink:0; }
+  .passo-emoji { font-size:22px; line-height:1; }
+  .passo-num { font-size:9px; font-weight:700; letter-spacing:1px; color:var(--clara); text-transform:uppercase; }
+  .passo-titulo { font-family:'Lora',serif; font-size:16px; font-weight:600; color:var(--texto); line-height:1.3; flex:1; }
+  .passo-body { padding:14px 18px 16px; }
+  .passo-texto { font-size:14px; color:var(--t-suave); line-height:1.72; margin-bottom:0; }
+  .dica-box { display:flex; gap:10px; align-items:flex-start; background:var(--bg-qt); border:1px solid var(--borda); border-radius:10px; padding:11px 13px; margin-top:12px; }
+  .dica-icon { font-size:15px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+
+  /* NÃO FAÇA */
+  .nao-wrap { background:var(--suave); border-radius:14px; padding:18px 20px; margin-bottom:20px; }
+  .nao-titulo { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:12px; }
+  .nao-lista { list-style:none; }
+  .nao-item { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid var(--borda); font-size:13.5px; color:var(--t-suave); line-height:1.5; }
+  .nao-item:last-child { border-bottom:none; }
+  .nao-icon { color:#cc3333; font-weight:700; font-size:14px; flex-shrink:0; margin-top:1px; }
+
+  /* LEMBRE */
+  .lembre-box { background:var(--principal); border-radius:14px; padding:20px 22px; text-align:center; }
+  .lembre-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+  .lembre-texto { font-family:'Lora',serif; font-size:17px; font-weight:600; color:white; line-height:1.45; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/protocolo-08.jpg" alt="Mujer caminando por el parque el fin de semana" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🌅 Fin de Semana · sin perder el hilo</div>
+      <h1 class="hero-titulo">Protocolo del <em>Fin de Semana</h1>
+      <p class="hero-desc">El fin de semana es donde la mayoría pierde lo que ganó durante la semana. No por accidente. Por falta de plan.</p>
+    </div>
+  </div>
+  <div class="situacao-wrap">
+    <div class="situacao-box">
+      <div class="situacao-label">Lo que suele pasar</div>
+      <p class="situacao-texto">De lunes a viernes vas bien. El sábado comés lo que no comiste en toda la semana. El domingo hay asado y seguís de largo. El lunes arrancás de cero. Y el progreso nunca aparece.</p>
+      <p class="situacao-solucao">Flexibilidad con estructura. Podés relajarte, comer distinto y disfrutar. Pero manteniendo 3 anclas que evitan el retroceso.</p>
+    </div>
+  </div>
+  <div class="frase-wrap">
+    <p class="frase">No engordás de lunes a viernes. Generalmente los excesos se acumulan el fin de semana. Por eso, pequeños cuidados acá hacen mucha diferencia.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Qué hacer</div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">☀️</span>
+          <span class="passo-num">01</span>
+        </div>
+        <div class="passo-titulo">Mantené el desayuno</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">Aunque sea fin de semana, aunque duermas más, desayuná con proteína. Esa ancla regula la insulina de todo el día y evita que el hambre acumulada te lleve a excesos en el almuerzo o la cena.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Huevos revueltos, yogur o queso. No hace falta que sea elaborado. Tiene que tener proteína.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🚶</span>
+          <span class="passo-num">02</span>
+        </div>
+        <div class="passo-titulo">Una caminata o una actividad que disfrutes</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">No hace falta entrenar. Una caminata por el parque, nadar, bailar, jugar con los chicos. Cualquier movimiento que te guste y que dure al menos 20 minutos ya activa el metabolismo y mejora el humor del día.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Invitá a alguien. Una actividad con compañía tiene muchas más chances de hacerse.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🍽️</span>
+          <span class="passo-num">03</span>
+        </div>
+        <div class="passo-titulo">Elegí 1 comida libre de verdad</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">En vez de comer mal todo el día, elegí 1 comida para comer lo que quieras con placer. Eso satisface las ganas, evita la culpa y mantiene el resto del día equilibrado. Una comida libre no deshace el proceso.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Elegí con anticipación cuál va a ser la comida libre. Así anticipás el placer y no cedés a todos los impulsos del día.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">💤</span>
+          <span class="passo-num">04</span>
+        </div>
+        <div class="passo-titulo">Dormí bien y despertate sin castigo</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">Aprovechá el fin de semana para dormir mejor. Y si el sábado comiste más de lo que pensabas, despertate el domingo sin castigo. Retomá el desayuno con proteína y seguí adelante. Sin compensaciones extremas.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Lo que pasa el fin de semana queda en el fin de semana. El lunes siempre es un arranque limpio.</p>
+        </div>
+      </div>
+    </div>
+    <div class="nao-wrap">
+      <div class="nao-titulo">Qué evitar en esta situación</div>
+      <ul class="nao-lista"><li class="nao-item"><span class="nao-icon">✗</span><span>Saltear el desayuno porque te levantaste más tarde</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Comer mal todo el día porque 'es fin de semana'</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Compensar el domingo lo que comiste el sábado</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Pasar todo el fin de semana en el sillón sin moverte nada</span></li></ul>
+    </div>
+    <div class="lembre-box">
+      <div class="lembre-label">Acordate siempre</div>
+      <p class="lembre-texto">Dos días no borran cinco. A menos que vos lo permitas.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

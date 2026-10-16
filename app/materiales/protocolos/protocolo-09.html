@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Protocolo del Síndrome Premenstrual y el Ciclo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --principal: #8B1A4A;
+    --clara:     #A02058;
+    --suave:     #FDE8F0;
+    --borda:     #F0B0CC;
+    --bg-qt:     #FFF0F6;
+    --destaque:  #c8a96e;
+    --vtexto:    #F0A0C0;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda-sutil: #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#F0A0C0; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* SITUAÇÃO */
+  .situacao-wrap { background:var(--principal); padding:0 32px 24px; }
+  .situacao-box { background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.18); border-radius:12px; padding:16px 18px; }
+  .situacao-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+  .situacao-texto { font-size:13.5px; color:rgba(255,255,255,0.88); line-height:1.65; }
+  .situacao-solucao { font-size:13px; color:#F0A0C0; margin-top:8px; line-height:1.6; font-style:italic; }
+
+  /* FRASE */
+  .frase-wrap { padding:28px 32px; border-bottom:1px solid var(--borda-sutil); }
+  .frase { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a1a1a; }
+  .frase em { font-style:italic; color:var(--clara); }
+
+  /* PASSOS */
+  .corpo { padding:24px 32px 36px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:18px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda-sutil); }
+
+  .passo-card { border:1.5px solid var(--borda-sutil); border-radius:14px; overflow:hidden; margin-bottom:16px; }
+  .passo-header { background:var(--suave); padding:14px 18px; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--borda-sutil); }
+  .passo-num-wrap { display:flex; flex-direction:column; align-items:center; gap:2px; flex-shrink:0; }
+  .passo-emoji { font-size:22px; line-height:1; }
+  .passo-num { font-size:9px; font-weight:700; letter-spacing:1px; color:var(--clara); text-transform:uppercase; }
+  .passo-titulo { font-family:'Lora',serif; font-size:16px; font-weight:600; color:var(--texto); line-height:1.3; flex:1; }
+  .passo-body { padding:14px 18px 16px; }
+  .passo-texto { font-size:14px; color:var(--t-suave); line-height:1.72; margin-bottom:0; }
+  .dica-box { display:flex; gap:10px; align-items:flex-start; background:var(--bg-qt); border:1px solid var(--borda); border-radius:10px; padding:11px 13px; margin-top:12px; }
+  .dica-icon { font-size:15px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+
+  /* NÃO FAÇA */
+  .nao-wrap { background:var(--suave); border-radius:14px; padding:18px 20px; margin-bottom:20px; }
+  .nao-titulo { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:12px; }
+  .nao-lista { list-style:none; }
+  .nao-item { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid var(--borda); font-size:13.5px; color:var(--t-suave); line-height:1.5; }
+  .nao-item:last-child { border-bottom:none; }
+  .nao-icon { color:#cc3333; font-weight:700; font-size:14px; flex-shrink:0; margin-top:1px; }
+
+  /* LEMBRE */
+  .lembre-box { background:var(--principal); border-radius:14px; padding:20px 22px; text-align:center; }
+  .lembre-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:8px; }
+  .lembre-texto { font-family:'Lora',serif; font-size:17px; font-weight:600; color:white; line-height:1.45; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/protocolo-09.jpg" alt="Chocolate amargo y cacao por las ganas de dulce premenstruales" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🌸 Premenstrual y Ciclo · los días más difíciles del mes</div>
+      <h1 class="hero-titulo">Protocolo <em>Premenstrual y del Ciclo</h1>
+      <p class="hero-desc">El síndrome premenstrual no es excusa, pero es real. Tu cuerpo cambia, tus necesidades cambian. Saberlo cambia todo.</p>
+    </div>
+  </div>
+  <div class="situacao-wrap">
+    <div class="situacao-box">
+      <div class="situacao-label">Lo que suele pasar</div>
+      <p class="situacao-texto">En la semana premenstrual las ganas de dulce explotan, aparece la hinchazón, el humor cae y la motivación se va. Comés lo que no planeaste, sentís culpa y creés que fracasaste.</p>
+      <p class="situacao-solucao">El síndrome premenstrual tiene causas hormonales reales. Enfrentarlo con los alimentos y actitudes correctos reduce los síntomas y protege tu proceso.</p>
+    </div>
+  </div>
+  <div class="frase-wrap">
+    <p class="frase">Hay fases del ciclo en las que el hambre aumenta, aparece la hinchazón y las ganas de dulce se vuelven más intensas. Eso no es falta de fuerza de voluntad. Es parte del proceso.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Qué hacer</div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🍫</span>
+          <span class="passo-num">01</span>
+        </div>
+        <div class="passo-titulo">Las ganas de dulce tienen una causa</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">La caída de la progesterona antes de la menstruación reduce la serotonina y genera unas ganas intensas de carbohidratos y dulce. En vez de resistir y después ceder de forma exagerada, satisfacelas con calidad: chocolate 70 % cacao, dátiles, fruta con pasta de maní.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">2 cuadraditos de chocolate amargo con una nuez resuelven las ganas de dulce sin disparar la insulina.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🧂</span>
+          <span class="passo-num">02</span>
+        </div>
+        <div class="passo-titulo">Reducí el sodio para deshinchar</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">La hinchazón premenstrual la causa la retención de líquidos mediada por hormonas. Reducir la sal, los fiambres y los ultraprocesados en los días previos a la menstruación ya baja la hinchazón de forma visible. Aumentá el agua.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">El té de diente de león o de hibisco tiene efecto diurético natural y ayuda a eliminar el líquido retenido.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🥦</span>
+          <span class="passo-num">03</span>
+        </div>
+        <div class="passo-titulo">El magnesio es tu aliado</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">El magnesio reduce los cólicos, mejora el humor y baja las ganas de dulce de esos días. Fuentes accesibles: banana, avena, lentejas, castañas de Pará (solo 1 por día), semillas de zapallo. Preferí la comida antes que el suplemento.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Una cucharada sopera de semillas de zapallo en el yogur o la ensalada ya aporta una buena dosis de magnesio.</p>
+        </div>
+      </div>
+    </div>
+    <div class="passo-card">
+      <div class="passo-header">
+        <div class="passo-num-wrap">
+          <span class="passo-emoji">🛁</span>
+          <span class="passo-num">04</span>
+        </div>
+        <div class="passo-titulo">Ejercicio suave, no castigo</div>
+      </div>
+      <div class="passo-body">
+        <p class="passo-texto">Durante los días previos y la menstruación, los entrenamientos intensos pueden empeorar los síntomas. Preferí caminata, yoga, elongación, aquagym. El movimiento suave alivia los cólicos, mejora el humor y no sobrecarga el cuerpo.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Si no tenés ganas de hacer ejercicio, no te castigues. Una caminata de 15 minutos al aire libre ya hace la diferencia en el humor.</p>
+        </div>
+      </div>
+    </div>
+    <div class="nao-wrap">
+      <div class="nao-titulo">Qué evitar en esta situación</div>
+      <ul class="nao-lista"><li class="nao-item"><span class="nao-icon">✗</span><span>Comer mucho dulce creyendo que así se pasan las ganas</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Restringir el agua por miedo a hincharte más</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Hacer entrenamiento intenso con cólicos fuertes</span></li><li class="nao-item"><span class="nao-icon">✗</span><span>Pesarte en la semana premenstrual y tomar el peso como un fracaso</span></li></ul>
+    </div>
+    <div class="lembre-box">
+      <div class="lembre-label">Acordate siempre</div>
+      <p class="lembre-texto">El peso en la balanza la semana previa a la menstruación no es grasa. Es líquido. Se va.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
