@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Smoothie de Zanahoria con Jengibre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal:   #A84200;
+    --clara:       #C85000;
+    --suave:       #fff3ea;
+    --borda-qt:    #ffd0a0;
+    --bg-qt:       #fffaf5;
+    --destaque:    #c8a96e;
+    --vtexto:      #ffb870;
+    --texto:       #1a1a1a;
+    --texto-suave: #4a5568;
+    --borda:       #e2e8f0;
+  }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: #F9F5EF; color: var(--texto); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 600px; margin: 0 auto; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10); min-height: 100vh; }
+  .topo-respiro { background: var(--principal); height: 32px; }
+  .hero { position: relative; height: 360px; background: var(--principal); overflow: hidden; }
+  .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.30) 52%, rgba(0,0,0,0.82) 100%); }
+  .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 32px 30px; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: #c8a96e; color: white; font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; padding: 4px 13px; border-radius: 30px; margin-bottom: 12px; }
+  .hero-titulo { font-family: 'Lora', serif; font-size: 28px; font-weight: 700; line-height: 1.22; color: white; margin-bottom: 8px; }
+  .hero-titulo em { font-style: italic; color: #ffb870; }
+  .hero-desc { font-size: 13.5px; color: rgba(255,255,255,0.82); line-height: 1.6; max-width: 420px; }
+  .beneficios { background: var(--principal); padding: 22px 32px 28px; }
+  .beneficios-titulo { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+  .beneficios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .beneficio-card { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 13px 14px; display: flex; align-items: flex-start; gap: 10px; }
+  .beneficio-icone { font-size: 19px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+  .beneficio-texto { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+  .beneficio-texto strong { display: block; font-weight: 600; color: #ffb870; font-size: 12px; margin-bottom: 3px; }
+  .quando-tomar { background: var(--bg-qt); border-top: 1px solid var(--borda-qt); border-bottom: 1px solid var(--borda-qt); padding: 18px 32px; display: flex; align-items: center; gap: 14px; }
+  .quando-icone { font-size: 24px; flex-shrink: 0; }
+  .quando-label { font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--clara); margin-bottom: 3px; }
+  .quando-texto { font-size: 14px; color: var(--texto); font-weight: 500; line-height: 1.45; }
+  .quando-sub { font-size: 12.5px; color: var(--texto-suave); margin-top: 2px; }
+  .corpo { padding: 32px 32px 44px; }
+  .sec-label { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--clara); margin-bottom: 16px; }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--borda); }
+  .divider { border: none; border-top: 1px solid var(--borda); margin: 28px 0; }
+  .ing-lista { list-style: none; margin-bottom: 4px; }
+  .ing-item { display: flex; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #f0f4f2; font-size: 14.5px; }
+  .ing-item:last-child { border-bottom: none; }
+  .ing-qtd { min-width: 130px; flex-shrink: 0; font-weight: 600; color: var(--clara); font-size: 13.5px; }
+  .ing-nome { color: var(--texto-suave); }
+  .preparo-lista { list-style: none; }
+  .preparo-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #f0f4f2; align-items: flex-start; }
+  .preparo-item:last-child { border-bottom: none; }
+  .preparo-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--principal); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; margin-top: 1px; }
+  .preparo-texto { font-size: 14.5px; color: var(--texto-suave); line-height: 1.7; padding-top: 3px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/receta-02.jpg" alt="Jugo naranja de zanahoria con jengibre" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🥕 Desayuno · 4 min</div>
+      <h1 class="hero-titulo">Smoothie de <em>Zanahoria con Jengibre</h1>
+      <p class="hero-desc">Cremoso, nutritivo y práctico. Una gran opción si querés más saciedad y energía entre comidas.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">Qué hace esta receta por tu cuerpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🫀</span>
+        <div class="beneficio-texto">
+          <strong>Hígado funcionando mejor</strong>
+          La zanahoria tiene betacaroteno, que protege el hígado, el órgano que regula el azúcar en sangre.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🌡️</span>
+        <div class="beneficio-texto">
+          <strong>Efecto termogénico</strong>
+          El jengibre sube levemente la temperatura del cuerpo, y eso acelera el gasto de energía.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">📉</span>
+        <div class="beneficio-texto">
+          <strong>Insulina respondiendo mejor</strong>
+          La canela ayuda a que las células absorban el azúcar con menos insulina, lo que facilita bajar de peso.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💪</span>
+        <div class="beneficio-texto">
+          <strong>Más energía</strong>
+          Con el hígado sano y la circulación activa, sentís más energía a lo largo del día.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Cuándo tomarlo</div>
+      <div class="quando-texto">En el desayuno, antes de comer</div>
+      <div class="quando-sub">La zanahoria cruda conserva más nutrientes que la cocida</div>
+    </div>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Ingredientes</div>
+    <ul class="ing-lista">
+      <li class="ing-item">
+        <span class="ing-qtd">2 unidades medianas</span>
+        <span class="ing-nome">zanahoria cruda pelada y cortada</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 rodaja</span>
+        <span class="ing-nome">jengibre fresco (2 cm)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 cdita.</span>
+        <span class="ing-nome">canela en polvo</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">jugo de ½</span>
+        <span class="ing-nome">limón</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">250 ml</span>
+        <span class="ing-nome">agua fría</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">hielo</span>
+        <span class="ing-nome">a gusto</span>
+      </li>
+    </ul>
+    <hr class="divider"/>
+    <div class="sec-label">Preparación</div>
+    <ol class="preparo-lista">
+      <li class="preparo-item">
+        <span class="preparo-num">1</span>
+        <span class="preparo-texto">Pelá y cortá la zanahoria en trozos chicos para facilitarle el trabajo a la licuadora.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">2</span>
+        <span class="preparo-texto">Poné todo en la licuadora y licuá 2 minutos a velocidad alta.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">3</span>
+        <span class="preparo-texto">Colá si preferís y serví con hielo.</span>
+      </li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>

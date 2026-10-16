@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Jugo de Remolacha con Naranja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal:   #7B1A1A;
+    --clara:       #962020;
+    --suave:       #fdeaea;
+    --borda-qt:    #f5c8c8;
+    --bg-qt:       #fef5f5;
+    --destaque:    #c8a96e;
+    --vtexto:      #f4a8a8;
+    --texto:       #1a1a1a;
+    --texto-suave: #4a5568;
+    --borda:       #e2e8f0;
+  }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #F9F5EF;
+    color: var(--texto);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10);
+    min-height: 100vh;
+  }
+  .topo-respiro {
+    background: var(--principal);
+    height: 32px;
+  }
+  .hero {
+    position: relative;
+    height: 360px;
+    background: var(--principal);
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.30) 52%,
+      rgba(0,0,0,0.82) 100%
+    );
+  }
+  .hero-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 32px 30px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #c8a96e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 4px 13px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+  }
+  .hero-titulo {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.22;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .hero-titulo em {
+    font-style: italic;
+    color: #f4a8a8;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+    max-width: 420px;
+  }
+  .beneficios {
+    background: var(--principal);
+    padding: 22px 32px 28px;
+  }
+  .beneficios-titulo {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .beneficio-card {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 13px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .beneficio-icone {
+    font-size: 19px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .beneficio-texto {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .beneficio-texto strong {
+    display: block;
+    font-weight: 600;
+    color: #f4a8a8;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  .quando-tomar {
+    background: var(--bg-qt);
+    border-top: 1px solid var(--borda-qt);
+    border-bottom: 1px solid var(--borda-qt);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .quando-icone { font-size: 24px; flex-shrink: 0; }
+  .quando-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 3px;
+  }
+  .quando-texto {
+    font-size: 14px;
+    color: var(--texto);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .quando-sub {
+    font-size: 12.5px;
+    color: var(--texto-suave);
+    margin-top: 2px;
+  }
+  .corpo { padding: 32px 32px 44px; }
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--clara);
+    margin-bottom: 16px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borda);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--borda);
+    margin: 28px 0;
+  }
+  .ing-lista { list-style: none; margin-bottom: 4px; }
+  .ing-item {
+    display: flex;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f4f2;
+    font-size: 14.5px;
+  }
+  .ing-item:last-child { border-bottom: none; }
+  .ing-qtd {
+    min-width: 130px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--clara);
+    font-size: 13.5px;
+  }
+  .ing-nome { color: var(--texto-suave); }
+  .preparo-lista { list-style: none; }
+  .preparo-item {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f4f2;
+    align-items: flex-start;
+  }
+  .preparo-item:last-child { border-bottom: none; }
+  .preparo-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--principal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+  .preparo-texto {
+    font-size: 14.5px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    padding-top: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/receta-04.jpg" alt="Jugo rojo de remolacha con naranja" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">❤️ A cualquier hora · 5 min</div>
+      <h1 class="hero-titulo">Jugo de <em>Remolacha con Naranja</h1>
+      <p class="hero-desc">Una bebida colorida y nutritiva para ayudarte a sentirte con más energía durante el día.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">Qué hace esta receta por tu cuerpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🩸</span>
+        <div class="beneficio-texto">
+          <strong>Mejor circulación</strong>
+          El nitrato de la remolacha dilata los vasos y mejora el transporte de nutrientes hacia las células.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🔥</span>
+        <div class="beneficio-texto">
+          <strong>Quema de grasa activada</strong>
+          Con mejor circulación, el oxígeno llega más fácil a los músculos y la quema de grasa aumenta.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">📉</span>
+        <div class="beneficio-texto">
+          <strong>Insulina más baja</strong>
+          La remolacha cruda tiene compuestos que mejoran la sensibilidad del cuerpo a la insulina.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💪</span>
+        <div class="beneficio-texto">
+          <strong>Más energía</strong>
+          Sentís más energía para el día a día, y eso te ayuda a moverte más y a bajar de peso más rápido.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Cuándo tomarlo</div>
+      <div class="quando-texto">A cualquier hora del día, incluso antes de caminar</div>
+      <div class="quando-sub">Tomarlo antes de una caminata potencia todavía más el efecto</div>
+    </div>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Ingredientes</div>
+    <ul class="ing-lista">
+      <li class="ing-item">
+        <span class="ing-qtd">½ unidad mediana</span>
+        <span class="ing-nome">remolacha cruda (pelada y cortada)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 unidad</span>
+        <span class="ing-nome">naranja (el jugo, sin azúcar agregada)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">1 rodaja fina</span>
+        <span class="ing-nome">jengibre fresco (1 cm aprox.)</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">200 ml</span>
+        <span class="ing-nome">agua fría</span>
+      </li>
+      <li class="ing-item">
+        <span class="ing-qtd">hielo</span>
+        <span class="ing-nome">a gusto</span>
+      </li>
+    </ul>
+    <hr class="divider"/>
+    <div class="sec-label">Preparación</div>
+    <ol class="preparo-lista">
+      <li class="preparo-item">
+        <span class="preparo-num">1</span>
+        <span class="preparo-texto">Pelá la remolacha y cortala en cubos chicos.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">2</span>
+        <span class="preparo-texto">Exprimí la naranja y poné el jugo en la licuadora con la remolacha, el jengibre y el agua.</span>
+      </li>
+      <li class="preparo-item">
+        <span class="preparo-num">3</span>
+        <span class="preparo-texto">Licuá 2 minutos a velocidad alta. Colá si preferís y serví con hielo.</span>
+      </li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>
