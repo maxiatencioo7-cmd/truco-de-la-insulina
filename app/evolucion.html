@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Club del Truco — Mi evolución</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{
+    --cream:#F4F0E6; --cream-light:#FBF8F1;
+    --green:#16382A; --green-deep:#0E2A1E; --green-soft:#2A4D3C;
+    --gold:#C7A24C; --gold-light:#E8CC81; --gold-deep:#9C7A2A;
+    --ink:#21342B; --muted:#7C8A82;
+    --down:#2E7D52; --down-bg:#E4F0E8;
+    --up:#B07A2B; --up-bg:#F6ECD6;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{ font-family:'Poppins',sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased;
+    display:flex; justify-content:center; background-color:#E7E2D6; }
+  .screen{ position:relative; width:100%; max-width:430px; min-height:100dvh; display:flex; flex-direction:column;
+    background:radial-gradient(120% 55% at 50% 0%, var(--cream-light) 0%, var(--cream) 55%, #ECE6D8 100%); }
+
+  /* topo */
+  .topbar{ position:sticky; top:0; z-index:20; display:flex; align-items:center; gap:12px;
+    padding:13px 16px; padding-top:calc(13px + env(safe-area-inset-top));
+    background:rgba(244,240,230,0.9); backdrop-filter:blur(10px); border-bottom:1px solid rgba(156,122,42,0.16); }
+  .iconbtn{ flex:none; width:40px; height:40px; border-radius:12px; border:none; cursor:pointer; display:grid; place-items:center;
+    background:var(--cream-light); box-shadow:0 0 0 1.3px rgba(156,122,42,0.3); color:var(--green); transition:transform .15s, box-shadow .15s; }
+  .iconbtn:hover{ transform:translateY(-1px); box-shadow:0 0 0 1.3px var(--gold),0 5px 11px rgba(14,42,30,0.12); }
+  .iconbtn:focus-visible{ outline:3px solid var(--gold-light); outline-offset:2px; }
+  .iconbtn svg{ width:20px; height:20px; }
+  .topbar h1{ flex:1; font-weight:700; font-size:18px; color:var(--green); }
+
+  .body{ flex:1; padding:18px 16px calc(34px + env(safe-area-inset-bottom)); }
+
+  /* resumo grande e amigável */
+  .summary{ border-radius:22px; padding:24px 22px; text-align:center; color:var(--cream-light);
+    background:linear-gradient(155deg,var(--green-soft),var(--green) 55%,var(--green-deep));
+    box-shadow:0 0 0 1.5px var(--gold-deep), 0 12px 28px rgba(14,42,30,0.22); margin-bottom:14px; }
+  .summary .cap{ font-size:14px; font-weight:500; color:var(--gold-light); }
+  .summary .big{ font-weight:700; font-size:48px; line-height:1.05; margin:4px 0 2px; }
+  .summary .big small{ font-size:20px; font-weight:600; }
+  .summary .from-to{ font-size:14.5px; color:#E9E2D2; }
+
+  /* botão compartilhar */
+  .share-btn{ width:100%; border:none; cursor:pointer; font-family:inherit; border-radius:15px; padding:15px;
+    font-size:15.5px; font-weight:600; color:var(--green-deep); display:flex; align-items:center; justify-content:center; gap:9px;
+    background:linear-gradient(150deg,#F2DCA0,var(--gold) 50%,var(--gold-deep));
+    box-shadow:0 0 0 1.3px var(--gold-deep), 0 8px 18px rgba(14,42,30,0.16); transition:transform .15s, box-shadow .15s; margin-bottom:22px; }
+  .share-btn:hover{ transform:translateY(-2px); box-shadow:0 0 0 1.3px var(--gold-light),0 12px 24px rgba(14,42,30,0.24); }
+  .share-btn:active{ transform:translateY(0); }
+  .share-btn:focus-visible{ outline:3px solid var(--green); outline-offset:2px; }
+  .share-btn svg{ width:19px; height:19px; }
+
+  .list-head{ display:flex; align-items:baseline; justify-content:space-between; margin:0 4px 12px; }
+  .list-head b{ font-size:16px; font-weight:600; color:var(--green); }
+  .list-head small{ font-size:12.5px; color:var(--muted); }
+
+  /* linha do dia */
+  .day-row{ width:100%; border:1px solid rgba(156,122,42,0.2); background:var(--cream-light); border-radius:16px;
+    padding:13px 14px; margin-bottom:10px; display:flex; align-items:center; gap:13px; cursor:pointer; font-family:inherit; text-align:left;
+    transition:transform .14s, box-shadow .14s, border-color .14s; }
+  .day-row:hover{ transform:translateY(-2px); box-shadow:0 10px 20px rgba(14,42,30,0.1); border-color:rgba(156,122,42,0.4); }
+  .day-row:focus-visible{ outline:3px solid var(--gold-light); outline-offset:2px; }
+  .dnum{ flex:none; width:46px; height:46px; border-radius:13px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:var(--cream); box-shadow:0 0 0 1.2px rgba(156,122,42,0.28); }
+  .dnum .l{ font-size:9px; font-weight:600; color:var(--muted); letter-spacing:.04em; }
+  .dnum .n{ font-size:18px; font-weight:700; color:var(--green); line-height:1; }
+  .day-info{ flex:1; min-width:0; }
+  .day-top{ display:flex; align-items:center; gap:9px; }
+  .peso{ font-size:19px; font-weight:700; color:var(--green); }
+  .chg{ display:inline-flex; align-items:center; gap:3px; font-size:12px; font-weight:600; padding:3px 8px; border-radius:99px; }
+  .chg.down{ color:var(--down); background:var(--down-bg); }
+  .chg.up{ color:var(--up); background:var(--up-bg); }
+  .chg.same{ color:var(--muted); background:#EDEAE0; }
+  .chg.start{ color:var(--gold-deep); background:#F6ECD6; }
+  .chg svg{ width:12px; height:12px; }
+  .day-bottom{ display:flex; align-items:center; gap:7px; margin-top:3px; }
+  .day-bottom .emo{ font-size:16px; }
+  .day-bottom .mood{ font-size:12.5px; color:var(--muted); }
+  .thumb{ flex:none; width:46px; height:46px; border-radius:12px; object-fit:cover; box-shadow:0 0 0 1.2px rgba(156,122,42,0.3); }
+  .pencil{ flex:none; color:var(--gold-deep); }
+  .pencil svg{ width:18px; height:18px; }
+
+  /* dia não registrado */
+  .day-row.empty{ background:transparent; border-style:dashed; }
+  .day-row.empty .dnum{ background:transparent; }
+  .day-row.empty .dnum .n{ color:var(--muted); }
+  .empty-mid{ flex:1; }
+  .empty-mid b{ display:block; font-size:14.5px; font-weight:600; color:var(--green); }
+  .empty-mid small{ font-size:12.5px; color:var(--muted); }
+  .tag-reg{ flex:none; display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--green-deep);
+    background:linear-gradient(150deg,var(--gold-light),var(--gold-deep)); padding:7px 13px; border-radius:99px; }
+  .tag-reg svg{ width:14px; height:14px; }
+
+  /* ----- popup registro/edição ----- */
+  .modal-overlay{ position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center; padding:20px;
+    background:rgba(14,42,30,0.55); backdrop-filter:blur(4px); animation:fade .2s ease-out; }
+  .modal-overlay[hidden]{ display:none; }
+  .modal-card{ width:100%; max-width:360px; background:var(--cream-light); border-radius:24px; padding:24px 22px;
+    box-shadow:0 24px 60px rgba(14,42,30,0.4); border:1px solid rgba(156,122,42,0.25); animation:pop .28s cubic-bezier(.2,.9,.25,1);
+    max-height:92dvh; overflow-y:auto; }
+  .modal-card h2{ font-size:20px; font-weight:700; color:var(--green); text-align:center; }
+  .modal-sub{ font-size:13.5px; color:var(--muted); text-align:center; margin:6px 0 20px; }
+  .field{ display:block; margin-bottom:18px; }
+  .field-label{ display:block; font-size:13px; font-weight:600; color:var(--green); margin-bottom:8px; }
+  .weight{ display:flex; align-items:center; gap:8px; border:1.5px solid rgba(156,122,42,0.35); border-radius:14px; padding:0 14px; background:var(--cream); }
+  .weight input{ flex:1; border:none; background:none; font-family:inherit; font-size:22px; font-weight:600; color:var(--green); padding:14px 0; outline:none; min-width:0; }
+  .weight .unit{ font-size:15px; font-weight:600; color:var(--muted); }
+  .photo-btn{ display:flex; align-items:center; justify-content:center; gap:9px; cursor:pointer; border:1.5px dashed rgba(156,122,42,0.5);
+    border-radius:14px; padding:15px; background:var(--cream); font-size:14.5px; font-weight:600; color:var(--gold-deep); transition:border-color .15s, background .15s; }
+  .photo-btn:hover{ border-color:var(--gold); background:#FCF6E9; }
+  .photo-btn svg{ width:20px; height:20px; }
+  .foto-preview{ display:block; width:100%; max-height:180px; object-fit:cover; border-radius:14px; margin-top:10px; }
+  .feelings{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .feel{ border:1.5px solid rgba(156,122,42,0.3); background:var(--cream); border-radius:14px; cursor:pointer; font-family:inherit;
+    padding:12px 4px; display:flex; flex-direction:column; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--green); transition:transform .12s, border-color .12s, box-shadow .12s; }
+  .feel span{ font-size:26px; line-height:1; }
+  .feel:hover{ border-color:var(--gold); }
+  .feel.sel{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(199,162,76,0.2); transform:translateY(-2px); background:#FCF6E9; }
+  .btn-primary{ width:100%; border:none; cursor:pointer; font-family:inherit; border-radius:15px; padding:16px; font-size:16px; font-weight:600;
+    color:var(--cream-light); background:linear-gradient(160deg,var(--green-soft),var(--green) 45%,var(--green-deep));
+    box-shadow:0 0 0 1.4px var(--gold-deep), 0 10px 22px rgba(14,42,30,0.28); transition:transform .15s, box-shadow .15s; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 0 0 1.4px var(--gold), 0 14px 28px rgba(14,42,30,0.36); }
+  .btn-ghost{ width:100%; border:none; background:none; cursor:pointer; font-family:inherit; margin-top:10px; padding:12px; font-size:14.5px; font-weight:600; color:var(--muted); border-radius:12px; }
+  .btn-ghost:hover{ color:var(--green); }
+
+  /* card de compartilhamento (renderizado fora da tela) */
+  .share-card{ position:absolute; left:-9999px; top:0; width:380px; padding:36px 30px; text-align:center; color:var(--cream-light);
+    background:radial-gradient(120% 80% at 50% 0%, var(--green-soft), var(--green) 55%, var(--green-deep)); font-family:'Poppins',sans-serif; }
+  .sc-logo{ width:64px; height:64px; margin:0 auto 12px; border-radius:50%; display:grid; place-items:center;
+    background:radial-gradient(circle at 35% 28%, #FBF8F1, #F4F0E6 70%); font-weight:700; font-size:26px; color:#9C7A2A; }
+  .sc-brand{ font-size:15px; font-weight:600; letter-spacing:.04em; color:var(--gold-light); }
+  .sc-title{ font-size:20px; font-weight:600; margin-top:2px; }
+  .sc-big{ font-size:64px; font-weight:700; line-height:1; margin:18px 0 4px; color:#fff; }
+  .sc-big small{ font-size:22px; font-weight:600; }
+  .sc-label{ font-size:15px; color:var(--gold-light); font-weight:600; }
+  .sc-sub{ font-size:15px; color:#E9E2D2; margin-top:14px; }
+  .sc-foot{ margin-top:22px; font-size:12px; letter-spacing:.06em; color:rgba(232,204,129,0.8); }
+
+  @keyframes fade{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes pop{ from{ opacity:0; transform:translateY(18px) scale(.96); } to{ opacity:1; transform:translateY(0) scale(1); } }
+</style>
+</head>
+<body>
+  <main class="screen">
+
+    <header class="topbar">
+      <button class="iconbtn" type="button" aria-label="Volver" onclick="if(window.sendPrompt){sendPrompt('Volver')}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <h1>Mi evolución</h1>
+    </header>
+
+    <div class="body">
+      <div class="summary">
+        <div class="cap" id="sumCap">Ya eliminaste</div>
+        <div class="big" id="sumBig">—</div>
+        <div class="from-to" id="sumFromTo"></div>
+      </div>
+
+      <button class="share-btn" type="button" id="shareBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        Compartir mi evolución
+      </button>
+
+      <div class="list-head"><b>Día a día</b><small>Tocá para registrar o editar</small></div>
+      <div id="dayList"></div>
+    </div>
+
+    <!-- POPUP REGISTRO / EDICIÓN -->
+    <div class="modal-overlay" id="evoModal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="evoTitle">
+        <h2 id="evoTitle">Registrar día</h2>
+        <p class="modal-sub">Completá lo que quieras y tocá guardar.</p>
+
+        <div class="field">
+          <span class="field-label">Peso</span>
+          <div class="weight"><input type="number" id="inPeso" inputmode="decimal" placeholder="00,0" step="0.1"><span class="unit">kg</span></div>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Foto del día</span>
+          <label class="photo-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h2.5L8 5.8h8L17.5 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.3"/></svg>
+            <span id="photoText">Agregar foto</span>
+            <input type="file" id="inFoto" accept="image/*" hidden>
+          </label>
+          <img id="fotoPreview" class="foto-preview" alt="Foto del día" hidden>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Cómo me siento</span>
+          <div class="feelings">
+            <button class="feel" type="button" data-feel="mal"><span>&#128542;</span>Mal</button>
+            <button class="feel" type="button" data-feel="normal"><span>&#128528;</span>Normal</button>
+            <button class="feel" type="button" data-feel="bem"><span>&#128516;</span>Bien</button>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btnSalvar" type="button">Guardar</button>
+        <button class="btn-ghost" id="btnCancelar" type="button">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- tarjeta para la captura compartible -->
+    <div class="share-card" id="shareCard">
+      <div class="sc-logo">CS</div>
+      <div class="sc-brand">Club del Truco</div>
+      <div class="sc-title">Mi evolución</div>
+      <div class="sc-big" id="scBig">—</div>
+      <div class="sc-label" id="scLabel"></div>
+      <div class="sc-sub" id="scSub"></div>
+      <div class="sc-foot">21 días • Club del Truco</div>
+    </div>
+
+  </main>
+
+  <script>
+    // Todo se guarda en el teléfono de la persona (localStorage). Sin servidor.
+    const TOTAL_DAYS = 21;
+    const EMO = { mal:'\u{1F61E}', normal:'\u{1F610}', bem:'\u{1F604}' };
+    const MOOD = { mal:'Mal', normal:'Normal', bem:'Bien' };
+    const mem = {};
+    const store = {
+      get(k){ try { return localStorage.getItem(k); } catch(e){ return (k in mem) ? mem[k] : null; } },
+      set(k,v){ try { localStorage.setItem(k,v); } catch(e){ mem[k] = v; } }
+    };
+    const entries = {};
+    for (let d = 1; d <= TOTAL_DAYS; d++){
+      let val = null; const raw = store.get('evo_dia_' + d); if (raw){ try { val = JSON.parse(raw); } catch(e){} }
+      entries[d] = val;
+    }
+    const fmt = (n) => Number(n).toFixed(1).replace('.', ',');
+    const registeredDays = () => Object.keys(entries).map(Number).filter(d => entries[d] && entries[d].peso != null).sort((a,b)=>a-b);
+    function prevRegistered(day){ const regs = registeredDays().filter(d => d < day); return regs.length ? regs[regs.length - 1] : null; }
+
+    function renderSummary(){
+      const regs = registeredDays();
+      const cap = document.getElementById('sumCap'), big = document.getElementById('sumBig'), ft = document.getElementById('sumFromTo');
+      if (regs.length < 1){ cap.textContent='Empezá a registrar'; big.textContent='—'; ft.textContent='Tocá un día acá abajo'; return; }
+      const ini = entries[regs[0]].peso, atu = entries[regs[regs.length-1]].peso;
+      const diff = +(ini - atu).toFixed(1);
+      if (diff > 0){ cap.textContent='Ya eliminaste'; big.innerHTML = fmt(diff) + ' <small>kg</small>'; }
+      else { cap.textContent='Tu peso actual'; big.innerHTML = fmt(atu) + ' <small>kg</small>'; }
+      ft.textContent = 'De ' + fmt(ini) + ' kg a ' + fmt(atu) + ' kg';
+    }
+    function chgChip(day){
+      const p = prevRegistered(day);
+      if (p == null) return '<span class="chg start">inicio</span>';
+      const d = +(entries[day].peso - entries[p].peso).toFixed(1);
+      if (d < 0) return '<span class="chg down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'+fmt(Math.abs(d))+' kg</span>';
+      if (d > 0) return '<span class="chg up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>'+fmt(d)+' kg</span>';
+      return '<span class="chg same">se mantuvo</span>';
+    }
+    function renderList(){
+      const list = document.getElementById('dayList'); list.innerHTML = '';
+      for (let d = 1; d <= TOTAL_DAYS; d++){
+        const e = entries[d]; const btn = document.createElement('button'); btn.type = 'button';
+        if (e && e.peso != null){
+          btn.className = 'day-row';
+          btn.innerHTML = '<span class="dnum"><span class="l">DÍA</span><span class="n">'+d+'</span></span>' +
+            '<span class="day-info"><span class="day-top"><span class="peso">'+fmt(e.peso)+' kg</span>'+chgChip(d)+'</span>' +
+            '<span class="day-bottom"><span class="emo">'+(EMO[e.sentimento]||'')+'</span><span class="mood">'+(MOOD[e.sentimento]||'')+'</span></span></span>' +
+            (e.foto ? '<img class="thumb" src="'+e.foto+'" alt="">' : '') +
+            '<span class="pencil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>';
+        } else {
+          btn.className = 'day-row empty';
+          btn.innerHTML = '<span class="dnum"><span class="l">DÍA</span><span class="n">'+d+'</span></span>' +
+            '<span class="empty-mid"><b>Día '+d+'</b><small>Todavía sin registrar</small></span>' +
+            '<span class="tag-reg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Registrar</span>';
+        }
+        btn.addEventListener('click', () => openModal(d)); list.appendChild(btn);
+      }
+    }
+
+    // ---------- popup ----------
+    const modal = document.getElementById('evoModal'), inPeso = document.getElementById('inPeso'), inFoto = document.getElementById('inFoto');
+    const fotoPreview = document.getElementById('fotoPreview'), photoText = document.getElementById('photoText');
+    let curDay = null, feeling = null, fotoData = null;
+    function openModal(day){
+      curDay = day; feeling = null; fotoData = null; const e = entries[day];
+      document.getElementById('evoTitle').textContent = (e && e.peso != null ? 'Editar día ' : 'Registrar día ') + day;
+      inPeso.value = e && e.peso != null ? String(e.peso).replace('.', ',') : '';
+      document.querySelectorAll('.feel').forEach(x => x.classList.remove('sel'));
+      if (e && e.sentimento){ feeling = e.sentimento; const b=document.querySelector('.feel[data-feel="'+feeling+'"]'); if(b) b.classList.add('sel'); }
+      if (e && e.foto){ fotoData = e.foto; fotoPreview.src = e.foto; fotoPreview.hidden = false; photoText.textContent='Cambiar foto'; }
+      else { fotoPreview.hidden = true; fotoPreview.removeAttribute('src'); photoText.textContent='Agregar foto'; }
+      modal.hidden = false;
+    }
+    const closeModal = () => { modal.hidden = true; };
+    document.getElementById('btnCancelar').addEventListener('click', closeModal);
+    function redimensiona(file, cb){
+      const r = new FileReader();
+      r.onload = (ev) => { const img = new Image();
+        img.onload = () => { const max = 800; let w = img.width, h = img.height;
+          if (w > max || h > max){ const s = max / Math.max(w, h); w = Math.round(w * s); h = Math.round(h * s); }
+          const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h);
+          try { cb(c.toDataURL('image/jpeg', 0.7)); } catch(e){ cb(ev.target.result); } };
+        img.onerror = () => cb(ev.target.result); img.src = ev.target.result; };
+      r.readAsDataURL(file);
+    }
+    inFoto.addEventListener('change', function(){ const f = inFoto.files && inFoto.files[0]; if (!f) return;
+      redimensiona(f, (dataUrl) => { fotoData = dataUrl; fotoPreview.src = dataUrl; fotoPreview.hidden = false; photoText.textContent='Cambiar foto'; }); });
+    document.querySelectorAll('.feel').forEach(function(b){ b.addEventListener('click', function(){ document.querySelectorAll('.feel').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); feeling = b.dataset.feel; }); });
+    document.getElementById('btnSalvar').addEventListener('click', function(){
+      const pesoNum = parseFloat((inPeso.value || '').replace(',', '.')); const peso = isNaN(pesoNum) ? null : pesoNum;
+      entries[curDay] = { peso, sentimento: feeling, foto: fotoData };
+      try { store.set('evo_dia_' + curDay, JSON.stringify(entries[curDay])); }
+      catch(e){ entries[curDay].foto = null; store.set('evo_dia_' + curDay, JSON.stringify(entries[curDay])); alert('La foto era muy pesada y no se pudo guardar; el peso sí quedó registrado.'); }
+      closeModal(); renderSummary(); renderList();
+    });
+
+    // ---------- compartir (captura) ----------
+    function refreshShareCard(){
+      const regs = registeredDays(); const big = document.getElementById('scBig'), label = document.getElementById('scLabel'), sub = document.getElementById('scSub');
+      if (regs.length < 1){ big.textContent='—'; label.textContent=''; sub.textContent=''; return; }
+      const ini = entries[regs[0]].peso, atu = entries[regs[regs.length-1]].peso; const diff = +(ini - atu).toFixed(1);
+      if (diff > 0){ big.innerHTML = '-'+fmt(diff)+' <small>kg</small>'; label.textContent='eliminados hasta ahora'; }
+      else { big.innerHTML = fmt(atu)+' <small>kg</small>'; label.textContent='peso actual'; }
+      sub.textContent = 'De ' + fmt(ini) + ' kg a ' + fmt(atu) + ' kg • ' + regs.length + ' días';
+    }
+    document.getElementById('shareBtn').addEventListener('click', async function(){
+      refreshShareCard(); const card = document.getElementById('shareCard');
+      if (typeof html2canvas !== 'function'){ if (navigator.share) { navigator.share({ title:'Mi evolución', text:'¡Mirá mi evolución en el Club del Truco!' }); } return; }
+      try{
+        const canvas = await html2canvas(card, { scale:2, backgroundColor:null, logging:false });
+        canvas.toBlob(async (blob) => {
+          const file = new File([blob], 'mi-evolucion.png', { type:'image/png' });
+          if (navigator.canShare && navigator.canShare({ files:[file] })){ await navigator.share({ files:[file], title:'Mi evolución', text:'Mi evolución en el Club del Truco' }); }
+          else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mi-evolucion.png'; a.click(); }
+        }, 'image/png');
+      }catch(err){ console.error(err); }
+    });
+    renderSummary(); renderList();
+  </script>
+</body>
+</html>
