@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Alivio para los Dolores del Cuerpo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal: #5C3317;
+    --clara:     #6E3D1C;
+    --suave:     #FDF0E8;
+    --borda-qt:  #E8C4A0;
+    --bg-qt:     #FFF8F2;
+    --destaque:  #c8a96e;
+    --vtexto:    #E8B888;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda:     #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#E8B888; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* BENEFÍCIOS */
+  .beneficios { background:var(--principal); padding:22px 32px 28px; }
+  .beneficios-titulo { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:14px; }
+  .beneficios-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .beneficio-card { background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:13px 14px; display:flex; align-items:flex-start; gap:10px; }
+  .beneficio-icone { font-size:19px; line-height:1; flex-shrink:0; margin-top:2px; }
+  .beneficio-texto { font-size:12.5px; color:rgba(255,255,255,0.85); line-height:1.5; }
+  .beneficio-texto strong { display:block; font-weight:600; color:#E8B888; font-size:12px; margin-bottom:3px; }
+
+  /* QUANDO */
+  .quando-tomar { background:var(--bg-qt); border-top:1px solid var(--borda-qt); border-bottom:1px solid var(--borda-qt); padding:18px 32px; display:flex; align-items:center; gap:14px; }
+  .quando-icone { font-size:24px; flex-shrink:0; }
+  .quando-label { font-size:9.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:3px; }
+  .quando-texto { font-size:14px; color:var(--texto); font-weight:500; line-height:1.45; }
+  .quando-sub { font-size:12.5px; color:var(--t-suave); margin-top:2px; }
+
+  /* INTRO */
+  .intro-wrap { padding:28px 32px 0; }
+  .intro-editorial { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a2e20; margin-bottom:14px; }
+  .intro-editorial em { font-style:italic; color:var(--clara); }
+  .intro-texto { font-size:14.5px; line-height:1.82; color:var(--t-suave); margin-bottom:8px; }
+  .intro-texto strong { color:var(--texto); font-weight:600; }
+
+  /* EXERCÍCIOS */
+  .corpo { padding:24px 32px 44px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:20px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda); }
+
+  .exercicio-card {
+    border:1.5px solid var(--borda);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .exercicio-header {
+    background:var(--suave);
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-bottom:1px solid var(--borda);
+  }
+  .exercicio-num-wrap {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    flex-shrink:0;
+  }
+  .exercicio-icone { font-size:24px; line-height:1; }
+  .exercicio-num {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--clara);
+    text-transform:uppercase;
+  }
+  .exercicio-meta { flex:1; }
+  .exercicio-nome { font-family:'Lora',serif; font-size:17px; font-weight:600; color:var(--texto); line-height:1.3; }
+  .exercicio-series {
+    display:inline-block;
+    margin-top:5px;
+    background:var(--principal);
+    color:white;
+    font-size:10px;
+    font-weight:600;
+    padding:3px 10px;
+    border-radius:20px;
+    letter-spacing:0.5px;
+  }
+  .exercicio-body { padding:16px 18px 18px; }
+  .exercicio-label {
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--clara);
+    margin-bottom:6px;
+  }
+  .exercicio-texto { font-size:14px; color:var(--t-suave); line-height:1.72; }
+  .dica-box {
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:var(--bg-qt);
+    border:1px solid var(--borda-qt);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-top:14px;
+  }
+  .dica-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/ritual-03.jpg" alt="Mujer sentada estirando el cuello para aliviar dolores" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">💆 Dolores · 10–15 min · 4 ejercicios</div>
+      <h1 class="hero-titulo">Alivio para los <em>Dolores del Cuerpo</h1>
+      <p class="hero-desc">Movimientos suaves para reducir la rigidez del cuerpo y ayudarte a sentirte más cómoda durante el día.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">Qué hace esta secuencia por tu cuerpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🔓</span>
+        <div class="beneficio-texto">
+          <strong>Columna más libre</strong>
+          Estiramientos específicos liberan la tensión acumulada entre las vértebras y alivian el dolor lumbar.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">😌</span>
+        <div class="beneficio-texto">
+          <strong>Cuello y hombros sueltos</strong>
+          Los movimientos de movilidad cervical deshacen la tensión que causan las horas frente a la pantalla.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🦴</span>
+        <div class="beneficio-texto">
+          <strong>Cadera más abierta</strong>
+          Abrir la cadera alivia la lumbar, mejora la postura y reduce los dolores irradiados a las piernas.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💤</span>
+        <div class="beneficio-texto">
+          <strong>Dormir sin dolor</strong>
+          Un cuerpo suelto a la noche duerme más profundo y se despierta sin esa rigidez de la mañana.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Cuándo hacerlo</div>
+      <div class="quando-texto">Al despertar y antes de dormir: son los momentos en que el alivio llega más rápido</div>
+      <div class="quando-sub">Nunca fuerces el estiramiento. Llegá hasta sentir tensión, no dolor</div>
+    </div>
+  </div>
+  <div class="intro-wrap">
+    <p class="intro-editorial">El dolor en el cuerpo no es señal de vejez. <em>Es señal de que el músculo estuvo quieto demasiado tiempo.</p>
+    <p class="intro-texto">Dolor de espalda, tensión en el cuello, cadera trabada: casi siempre son músculos acortados y articulaciones que necesitan movimiento. Estos 4 estiramientos deshacen los nudos más comunes del día a día.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Los 4 ejercicios</div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🐱</span>
+          <span class="exercicio-num">01</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Gato y Vaca en el Piso</div>
+          <div class="exercicio-series">3 series · 10 repeticiones</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">En cuatro apoyos (manos y rodillas en el piso). Inspirá arqueando la espalda hacia abajo y mirando hacia arriba (vaca). Exhalá curvando la espalda hacia arriba como un gato enojado, con la cabeza entre los brazos. Movimiento fluido y lento.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Moviliza todas las vértebras de la columna, lubrica los discos intervertebrales y libera la tensión de los músculos paravertebrales, los principales responsables del dolor lumbar crónico.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Hacelo al despertar, incluso en la cama si querés. 10 repeticiones lentas ya cambian muchísimo la rigidez matinal.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🧎</span>
+          <span class="exercicio-num">02</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Media Rodilla al Piso. Apertura de Cadera</div>
+          <div class="exercicio-series">3 series · 30 segundos por lado</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Apoyá una rodilla en el piso y el otro pie adelante (posición de caballero). Empujá la cadera suavemente hacia adelante y hacia abajo, sintiendo el estiramiento en la parte de adelante del muslo y en la cadera de la rodilla que está en el piso. Sostené.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Estira el psoas ilíaco, el músculo más acortado en quienes pasan el día sentadas. Ese músculo acortado tira de la zona lumbar hacia adelante y es la principal causa de dolor de espalda en mujeres sedentarias.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Poné un almohadón debajo de la rodilla que está en el piso. No te inclines hacia adelante: mantené el tronco erguido para que el estiramiento funcione.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🧠</span>
+          <span class="exercicio-num">03</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Estiramiento de Cuello y Trapecio</div>
+          <div class="exercicio-series">3 series · 30 segundos por lado</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Sentada con la espalda derecha. Incliná la cabeza a la derecha, oreja hacia el hombro. Con la mano derecha, hacé una presión suave sobre el lado izquierdo de la cabeza. Sentí el estiramiento en el cuello y el hombro izquierdo. Cambiá de lado.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">El trapecio superior es el músculo más tenso en el 90 % de las mujeres que trabajan sentadas. Este estiramiento específico libera la tensión que causa dolor de cabeza, de cuello y de hombros.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Presión muy suave, sin tirar con fuerza. Respirá profundo durante el estiramiento y al exhalar soltá un poco más la tensión.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🙏</span>
+          <span class="exercicio-num">04</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Postura del Niño</div>
+          <div class="exercicio-series">2 series · 60 segundos</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Arrodillate y sentate sobre los talones. Estirá los brazos hacia adelante y bajá el tronco hacia el piso, con la frente tocando la colchoneta. Respirá profundo, sintiendo cómo la espalda se expande con cada inspiración.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Estira al mismo tiempo la zona lumbar, la cadera, el sacro y los hombros. También tiene un efecto calmante sobre el sistema nervioso: reduce el cortisol y le avisa al cuerpo que puede relajarse tranquilo.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Abrí las rodillas un poco más que la cadera si la panza te molesta. Mantené los brazos estirados para sentir el estiramiento también en los hombros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Movete y Bajá de Peso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal: #7B1A1A;
+    --clara:     #962020;
+    --suave:     #FDEAEA;
+    --borda-qt:  #F0B8B8;
+    --bg-qt:     #FFF5F5;
+    --destaque:  #c8a96e;
+    --vtexto:    #F4A8A8;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda:     #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#F4A8A8; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* BENEFÍCIOS */
+  .beneficios { background:var(--principal); padding:22px 32px 28px; }
+  .beneficios-titulo { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:14px; }
+  .beneficios-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .beneficio-card { background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:13px 14px; display:flex; align-items:flex-start; gap:10px; }
+  .beneficio-icone { font-size:19px; line-height:1; flex-shrink:0; margin-top:2px; }
+  .beneficio-texto { font-size:12.5px; color:rgba(255,255,255,0.85); line-height:1.5; }
+  .beneficio-texto strong { display:block; font-weight:600; color:#F4A8A8; font-size:12px; margin-bottom:3px; }
+
+  /* QUANDO */
+  .quando-tomar { background:var(--bg-qt); border-top:1px solid var(--borda-qt); border-bottom:1px solid var(--borda-qt); padding:18px 32px; display:flex; align-items:center; gap:14px; }
+  .quando-icone { font-size:24px; flex-shrink:0; }
+  .quando-label { font-size:9.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:3px; }
+  .quando-texto { font-size:14px; color:var(--texto); font-weight:500; line-height:1.45; }
+  .quando-sub { font-size:12.5px; color:var(--t-suave); margin-top:2px; }
+
+  /* INTRO */
+  .intro-wrap { padding:28px 32px 0; }
+  .intro-editorial { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a2e20; margin-bottom:14px; }
+  .intro-editorial em { font-style:italic; color:var(--clara); }
+  .intro-texto { font-size:14.5px; line-height:1.82; color:var(--t-suave); margin-bottom:8px; }
+  .intro-texto strong { color:var(--texto); font-weight:600; }
+
+  /* EXERCÍCIOS */
+  .corpo { padding:24px 32px 44px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:20px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda); }
+
+  .exercicio-card {
+    border:1.5px solid var(--borda);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .exercicio-header {
+    background:var(--suave);
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-bottom:1px solid var(--borda);
+  }
+  .exercicio-num-wrap {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    flex-shrink:0;
+  }
+  .exercicio-icone { font-size:24px; line-height:1; }
+  .exercicio-num {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--clara);
+    text-transform:uppercase;
+  }
+  .exercicio-meta { flex:1; }
+  .exercicio-nome { font-family:'Lora',serif; font-size:17px; font-weight:600; color:var(--texto); line-height:1.3; }
+  .exercicio-series {
+    display:inline-block;
+    margin-top:5px;
+    background:var(--principal);
+    color:white;
+    font-size:10px;
+    font-weight:600;
+    padding:3px 10px;
+    border-radius:20px;
+    letter-spacing:0.5px;
+  }
+  .exercicio-body { padding:16px 18px 18px; }
+  .exercicio-label {
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--clara);
+    margin-bottom:6px;
+  }
+  .exercicio-texto { font-size:14px; color:var(--t-suave); line-height:1.72; }
+  .dica-box {
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:var(--bg-qt);
+    border:1px solid var(--borda-qt);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-top:14px;
+  }
+  .dica-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/ritual-05.jpg" alt="Mujer haciendo saltos de tijera en el parque para adelgazar" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🔥 Bajar de peso · 10–15 min · 4 ejercicios</div>
+      <h1 class="hero-titulo">Movete y <em>Bajá de Peso</h1>
+      <p class="hero-desc">Unos minutos de movimiento ayudan a gastar energía, mejorar el ánimo y acompañar tu proceso para bajar de peso.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">Qué hace esta secuencia por tu cuerpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🔥</span>
+        <div class="beneficio-texto">
+          <strong>Metabolismo acelerado</strong>
+          Los músculos grandes exigen más energía, incluso en reposo. Entrenarlos aumenta la quema de calorías las 24 horas del día.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💪</span>
+        <div class="beneficio-texto">
+          <strong>Masa muscular preservada</strong>
+          Los ejercicios de fuerza preservan el músculo mientras bajás de peso y evitan el efecto rebote.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">📉</span>
+        <div class="beneficio-texto">
+          <strong>Insulina más baja</strong>
+          Los ejercicios breves de alta intensidad mejoran la sensibilidad a la insulina, la clave para desbloquear la quema de grasa.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">😊</span>
+        <div class="beneficio-texto">
+          <strong>Bienestar inmediato</strong>
+          En 10 minutos de ejercicio el cuerpo libera endorfina, dopamina y serotonina. El humor cambia al instante.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Cuándo hacerlo</div>
+      <div class="quando-texto">A la mañana en ayunas para la máxima quema de grasa, o a la hora que puedas</div>
+      <div class="quando-sub">3 veces por semana ya generan un resultado visible en 30 días</div>
+    </div>
+  </div>
+  <div class="intro-wrap">
+    <p class="intro-editorial">No hace falta gimnasio. No hace falta 1 hora. <em>Hace falta constancia y los movimientos correctos.</p>
+    <p class="intro-texto">Estos 4 ejercicios fueron elegidos porque activan los grupos musculares más grandes del cuerpo, lo que genera el mayor gasto calórico posible en poco tiempo. Y lo mejor: el efecto sigue durante horas después de que parás.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Los 4 ejercicios</div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🏋️</span>
+          <span class="exercicio-num">01</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Sentadilla Libre</div>
+          <div class="exercicio-series">4 series · 15 repeticiones</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Pies al ancho de los hombros, con las puntas apenas hacia afuera. Bajá como si fueras a sentarte en una silla imaginaria, con las rodillas detrás de los pies y el pecho erguido. Subí exhalando con fuerza. Brazos al frente para equilibrarte.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Activa cuádriceps, glúteos, isquiotibiales y core al mismo tiempo, los músculos más grandes del cuerpo. Cuanto más grande es el músculo activado, mayor es el gasto calórico durante y después del ejercicio (EPOC).</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Bajá hasta que las rodillas queden a 90 grados o más abajo. Cuanto más profundo, más glúteo y menos rodilla. Mantené el peso en los talones.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">⭐</span>
+          <span class="exercicio-num">02</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Saltos de Tijera</div>
+          <div class="exercicio-series">4 series · 40 segundos</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">De pie, pies juntos y brazos a los costados. Saltá abriendo las piernas y llevando los brazos por encima de la cabeza al mismo tiempo. Saltá de vuelta a la posición inicial. Mantené un ritmo constante y caé suave.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Eleva rápido la frecuencia cardíaca y convierte el ejercicio en cardio de alta intensidad. En 40 segundos, el corazón trabaja en la zona de quema de grasa sin necesidad de ningún equipo.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Si el impacto te molesta en la rodilla o el piso, hacé la versión sin salto: paso lateral abriendo las piernas alternadamente, subiendo los brazos a la par.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">👟</span>
+          <span class="exercicio-num">03</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Estocada (Zancada) Alternada</div>
+          <div class="exercicio-series">3 series · 12 repeticiones por pierna</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">De pie, avanzá con un paso grande del pie derecho. Bajá la rodilla izquierda hacia el piso (sin tocarlo). Volvé. Alterná las piernas. Mantené el tronco erguido y la rodilla de adelante detrás del pie.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Trabaja cada pierna por separado, exige más estabilidad y activa el core. Glúteo y cuádriceps trabajan juntos en el mismo movimiento, duplicando el gasto calórico respecto de la sentadilla.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">El paso tiene que ser lo bastante grande para que la rodilla de adelante no pase la punta del pie. Un paso corto sobrecarga la rodilla.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">💪</span>
+          <span class="exercicio-num">04</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Plancha Abdominal</div>
+          <div class="exercicio-series">3 series · 30 a 60 segundos</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Apoyá los antebrazos y las puntas de los pies en el piso. Cuerpo en línea recta de la cabeza a los talones. Contraé el abdomen y no dejes que la cadera caiga ni suba. Respirá de forma controlada todo el tiempo.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Activa el core profundo (transverso abdominal), que sostiene la columna y le da forma al abdomen. También mantiene la frecuencia cardíaca elevada y convierte un ejercicio estático en quema de grasa.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">La calidad vale más que el tiempo. 20 segundos con el abdomen contraído valen más que 60 con la cadera caída. Sumá 5 segundos por semana.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

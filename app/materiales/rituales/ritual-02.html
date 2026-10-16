@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Deshinchate de Una Vez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal: #1A6B4A;
+    --clara:     #237A55;
+    --suave:     #E4F5EE;
+    --borda-qt:  #A8DCC5;
+    --bg-qt:     #F0FDF7;
+    --destaque:  #c8a96e;
+    --vtexto:    #88CCAA;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda:     #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#88CCAA; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* BENEFÍCIOS */
+  .beneficios { background:var(--principal); padding:22px 32px 28px; }
+  .beneficios-titulo { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:14px; }
+  .beneficios-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .beneficio-card { background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:13px 14px; display:flex; align-items:flex-start; gap:10px; }
+  .beneficio-icone { font-size:19px; line-height:1; flex-shrink:0; margin-top:2px; }
+  .beneficio-texto { font-size:12.5px; color:rgba(255,255,255,0.85); line-height:1.5; }
+  .beneficio-texto strong { display:block; font-weight:600; color:#88CCAA; font-size:12px; margin-bottom:3px; }
+
+  /* QUANDO */
+  .quando-tomar { background:var(--bg-qt); border-top:1px solid var(--borda-qt); border-bottom:1px solid var(--borda-qt); padding:18px 32px; display:flex; align-items:center; gap:14px; }
+  .quando-icone { font-size:24px; flex-shrink:0; }
+  .quando-label { font-size:9.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:3px; }
+  .quando-texto { font-size:14px; color:var(--texto); font-weight:500; line-height:1.45; }
+  .quando-sub { font-size:12.5px; color:var(--t-suave); margin-top:2px; }
+
+  /* INTRO */
+  .intro-wrap { padding:28px 32px 0; }
+  .intro-editorial { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a2e20; margin-bottom:14px; }
+  .intro-editorial em { font-style:italic; color:var(--clara); }
+  .intro-texto { font-size:14.5px; line-height:1.82; color:var(--t-suave); margin-bottom:8px; }
+  .intro-texto strong { color:var(--texto); font-weight:600; }
+
+  /* EXERCÍCIOS */
+  .corpo { padding:24px 32px 44px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:20px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda); }
+
+  .exercicio-card {
+    border:1.5px solid var(--borda);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .exercicio-header {
+    background:var(--suave);
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-bottom:1px solid var(--borda);
+  }
+  .exercicio-num-wrap {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    flex-shrink:0;
+  }
+  .exercicio-icone { font-size:24px; line-height:1; }
+  .exercicio-num {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--clara);
+    text-transform:uppercase;
+  }
+  .exercicio-meta { flex:1; }
+  .exercicio-nome { font-family:'Lora',serif; font-size:17px; font-weight:600; color:var(--texto); line-height:1.3; }
+  .exercicio-series {
+    display:inline-block;
+    margin-top:5px;
+    background:var(--principal);
+    color:white;
+    font-size:10px;
+    font-weight:600;
+    padding:3px 10px;
+    border-radius:20px;
+    letter-spacing:0.5px;
+  }
+  .exercicio-body { padding:16px 18px 18px; }
+  .exercicio-label {
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--clara);
+    margin-bottom:6px;
+  }
+  .exercicio-texto { font-size:14px; color:var(--t-suave); line-height:1.72; }
+  .dica-box {
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:var(--bg-qt);
+    border:1px solid var(--borda-qt);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-top:14px;
+  }
+  .dica-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/ritual-02.jpg" alt="Mujer haciendo sentadillas para deshinchar" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">💧 Deshinchar · 10–15 min · 4 ejercicios</div>
+      <h1 class="hero-titulo">Deshinchate <em>de Una Vez</h1>
+      <p class="hero-desc">Cuando el cuerpo está menos hinchado, te sentís más liviana, más cómoda y hasta la ropa te queda mejor.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">Qué hace esta secuencia por tu cuerpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🫧</span>
+        <div class="beneficio-texto">
+          <strong>Panza menos hinchada</strong>
+          El movimiento abdominal estimula el drenaje linfático intestinal, que causa gran parte de la hinchazón visible.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🦵</span>
+        <div class="beneficio-texto">
+          <strong>Piernas sin pesadez</strong>
+          Las contracciones musculares activan los vasos linfáticos de las piernas y eliminan el líquido retenido en las células.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">💨</span>
+        <div class="beneficio-texto">
+          <strong>Menos gases y retención</strong>
+          Los ejercicios de respiración y torsión activan el peristaltismo y reducen la producción de gases.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">✨</span>
+        <div class="beneficio-texto">
+          <strong>Cara y ojos deshinchados</strong>
+          El drenaje linfático empieza en la cabeza y baja. Activarlo reduce la hinchazón en la cara y alrededor de los ojos.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Cuándo hacerlo</div>
+      <div class="quando-texto">A la mañana al despertar: es cuando el cuerpo más líquido retiene</div>
+      <div class="quando-sub">Tomá un vaso de agua antes de empezar para facilitar el drenaje</div>
+    </div>
+  </div>
+  <div class="intro-wrap">
+    <p class="intro-editorial">La hinchazón no es grasa. <em>Es líquido estancado esperando una orden para salir.</p>
+    <p class="intro-texto">El sistema linfático no tiene bomba propia: depende del movimiento muscular para funcionar. Cuando te quedás quieta, el líquido se acumula. Estos 4 ejercicios son la bomba que faltaba.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Los 4 ejercicios</div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🌬️</span>
+          <span class="exercicio-num">01</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Respiración Diafragmática</div>
+          <div class="exercicio-series">3 series · 10 respiraciones</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Acostate o sentate cómoda. Poné una mano en el pecho y la otra en la panza. Inspirá por la nariz en 4 tiempos, sintiendo cómo se expande la panza (no el pecho). Exhalá por la boca en 6 tiempos, contrayendo el abdomen.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">El diafragma funciona como una bomba para el sistema linfático. Cada respiración profunda crea variaciones de presión que mueven la linfa por el cuerpo, sobre todo en el tronco y el abdomen.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Si el pecho sube antes que la panza, estás respirando mal. Practicá despacio hasta sentir que la panza se mueve primero.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🔄</span>
+          <span class="exercicio-num">02</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Torsión de Tronco Sentada</div>
+          <div class="exercicio-series">3 series · 10 repeticiones por lado</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Sentate en el piso con las piernas cruzadas. Inspirá con la espalda derecha. Al exhalar, girá el tronco hacia la derecha, apoyando la mano izquierda en la rodilla derecha. Quedate 3 respiraciones. Volvé y repetí hacia el otro lado.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">La torsión comprime y descomprime los órganos y vasos linfáticos abdominales como una esponja, obliga a la linfa a moverse y arrastra toxinas y líquido retenido con ella.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Girá desde la cintura, no desde los hombros. Sentí el estiramiento en el costado del tronco: eso es lo que estimula el drenaje.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🏋️</span>
+          <span class="exercicio-num">03</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Sentadilla Parcial Lenta</div>
+          <div class="exercicio-series">3 series · 15 repeticiones</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">De pie, pies al ancho de los hombros. Bajá hasta los 90 grados (o hasta donde puedas sin dolor) en 3 segundos. Subí en 1 segundo. Mantené las rodillas alineadas con los pies y el pecho erguido.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Los músculos grandes de los muslos y los glúteos son los mayores activadores del sistema linfático. Contraerlos empuja hacia arriba la linfa acumulada en las piernas y en la zona pélvica.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">La bajada lenta importa más que la sentadilla completa. Si te duele la rodilla, bajá solo hasta donde te resulte cómodo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🌉</span>
+          <span class="exercicio-num">04</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Puente en el Piso con Respiración</div>
+          <div class="exercicio-series">3 series · 12 repeticiones</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Acostate boca arriba, rodillas flexionadas, pies en el piso al ancho de la cadera. Inspirá profundo. Al exhalar, levantá la cadera contrayendo glúteos y abdomen. Sostené 2 segundos arriba. Bajá inspirando.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Activa glúteos, isquiotibiales y abdomen al mismo tiempo. La compresión de la zona pélvica en la subida estimula el drenaje linfático del bajo vientre y de las piernas.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Arriba, apretá bien los glúteos. No dejes que las rodillas se abran: es señal de que el glúteo no está trabajando.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

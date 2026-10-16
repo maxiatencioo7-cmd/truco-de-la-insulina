@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Activá tu Circulación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --principal: #1B5E7B;
+    --clara:     #246E8F;
+    --suave:     #E3F4FB;
+    --borda-qt:  #A8D8EC;
+    --bg-qt:     #F0FAFF;
+    --destaque:  #c8a96e;
+    --vtexto:    #A8DCF0;
+    --texto:     #1a1a1a;
+    --t-suave:   #4a5568;
+    --borda:     #e2e8f0;
+  }
+  body { font-family:'Inter',-apple-system,sans-serif; background:#F9F5EF; color:var(--texto); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:600px; margin:0 auto; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 8px 40px rgba(0,0,0,0.10); min-height:100vh; }
+
+  /* TOPO */
+  .topo-respiro { background:var(--principal); height:32px; }
+
+  /* HERO */
+  .hero { position:relative; height:360px; background:var(--principal); overflow:hidden; }
+  .hero-img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.32) 52%,rgba(0,0,0,0.88) 100%); }
+  .hero-content { position:absolute; bottom:0; left:0; right:0; padding:24px 32px 30px; }
+  .hero-tag { display:inline-flex; align-items:center; gap:6px; background:#c8a96e; color:white; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; padding:4px 13px; border-radius:30px; margin-bottom:12px; }
+  .hero-titulo { font-family:'Lora',serif; font-size:28px; font-weight:700; line-height:1.22; color:white; margin-bottom:8px; }
+  .hero-titulo em { font-style:italic; color:#A8DCF0; }
+  .hero-desc { font-size:13.5px; color:rgba(255,255,255,0.82); line-height:1.6; max-width:420px; }
+
+  /* BENEFÍCIOS */
+  .beneficios { background:var(--principal); padding:22px 32px 28px; }
+  .beneficios-titulo { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:14px; }
+  .beneficios-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .beneficio-card { background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:13px 14px; display:flex; align-items:flex-start; gap:10px; }
+  .beneficio-icone { font-size:19px; line-height:1; flex-shrink:0; margin-top:2px; }
+  .beneficio-texto { font-size:12.5px; color:rgba(255,255,255,0.85); line-height:1.5; }
+  .beneficio-texto strong { display:block; font-weight:600; color:#A8DCF0; font-size:12px; margin-bottom:3px; }
+
+  /* QUANDO */
+  .quando-tomar { background:var(--bg-qt); border-top:1px solid var(--borda-qt); border-bottom:1px solid var(--borda-qt); padding:18px 32px; display:flex; align-items:center; gap:14px; }
+  .quando-icone { font-size:24px; flex-shrink:0; }
+  .quando-label { font-size:9.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--clara); margin-bottom:3px; }
+  .quando-texto { font-size:14px; color:var(--texto); font-weight:500; line-height:1.45; }
+  .quando-sub { font-size:12.5px; color:var(--t-suave); margin-top:2px; }
+
+  /* INTRO */
+  .intro-wrap { padding:28px 32px 0; }
+  .intro-editorial { font-family:'Lora',serif; font-size:19px; font-weight:400; line-height:1.55; color:#1a2e20; margin-bottom:14px; }
+  .intro-editorial em { font-style:italic; color:var(--clara); }
+  .intro-texto { font-size:14.5px; line-height:1.82; color:var(--t-suave); margin-bottom:8px; }
+  .intro-texto strong { color:var(--texto); font-weight:600; }
+
+  /* EXERCÍCIOS */
+  .corpo { padding:24px 32px 44px; }
+  .sec-label { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--clara); margin-bottom:20px; }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--borda); }
+
+  .exercicio-card {
+    border:1.5px solid var(--borda);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .exercicio-header {
+    background:var(--suave);
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-bottom:1px solid var(--borda);
+  }
+  .exercicio-num-wrap {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    flex-shrink:0;
+  }
+  .exercicio-icone { font-size:24px; line-height:1; }
+  .exercicio-num {
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--clara);
+    text-transform:uppercase;
+  }
+  .exercicio-meta { flex:1; }
+  .exercicio-nome { font-family:'Lora',serif; font-size:17px; font-weight:600; color:var(--texto); line-height:1.3; }
+  .exercicio-series {
+    display:inline-block;
+    margin-top:5px;
+    background:var(--principal);
+    color:white;
+    font-size:10px;
+    font-weight:600;
+    padding:3px 10px;
+    border-radius:20px;
+    letter-spacing:0.5px;
+  }
+  .exercicio-body { padding:16px 18px 18px; }
+  .exercicio-label {
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--clara);
+    margin-bottom:6px;
+  }
+  .exercicio-texto { font-size:14px; color:var(--t-suave); line-height:1.72; }
+  .dica-box {
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:var(--bg-qt);
+    border:1px solid var(--borda-qt);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-top:14px;
+  }
+  .dica-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+  .dica-texto { font-size:13px; color:var(--texto); line-height:1.65; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topo-respiro"></div>
+  <div class="hero">
+    <img class="hero-img" src="../../assets/materiales/ritual-01.jpg" alt="Mujer haciendo marcha con rodillas altas para activar la circulación" onerror="this.style.display='none'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">🩸 Circulación · 10–15 min · 4 ejercicios</div>
+      <h1 class="hero-titulo">Activá tu <em>Circulación</h1>
+      <p class="hero-desc">Movimientos simples para ayudar a tu cuerpo a deshincharse, aliviar la sensación de piernas pesadas y aumentar tu energía en pocos minutos.</p>
+    </div>
+  </div>
+  <div class="beneficios">
+    <div class="beneficios-titulo">Qué hace esta secuencia por tu cuerpo</div>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🦵</span>
+        <div class="beneficio-texto">
+          <strong>Piernas más livianas</strong>
+          La contracción muscular de las piernas empuja la sangre de vuelta al corazón y alivia la pesadez y la hinchazón.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">⚡</span>
+        <div class="beneficio-texto">
+          <strong>Más energía en minutos</strong>
+          Con la circulación activa, el oxígeno llega más rápido a las células y sentís la diferencia al instante.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">🔥</span>
+        <div class="beneficio-texto">
+          <strong>Quema de grasa encendida</strong>
+          Circulación activa = metabolismo acelerado. El cuerpo empieza a usar la grasa como combustible.
+        </div>
+      </div>
+      <div class="beneficio-card">
+        <span class="beneficio-icone">😴</span>
+        <div class="beneficio-texto">
+          <strong>Sueño más reparador</strong>
+          Ejercitarte a la noche mejora la circulación periférica y facilita la relajación profunda.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="quando-tomar">
+    <span class="quando-icone">⏰</span>
+    <div>
+      <div class="quando-label">Cuándo hacerlo</div>
+      <div class="quando-texto">A cualquier hora del día. Ideal al despertar o después de pasar mucho tiempo sentada</div>
+      <div class="quando-sub">Repetí la secuencia 2 veces para potenciar el efecto</div>
+    </div>
+  </div>
+  <div class="intro-wrap">
+    <p class="intro-editorial">Piernas pesadas, hormigueo, cansancio sin motivo. <em>Es la circulación pidiendo auxilio.</p>
+    <p class="intro-texto">Cuando la sangre circula mal, el cuerpo retiene líquido, se cansa más rápido y quema menos grasa. Estos 4 movimientos activan la bomba muscular de las piernas y mejoran el retorno venoso en menos de 15 minutos.</p>
+  </div>
+  <div class="corpo">
+    <div class="sec-label">Los 4 ejercicios</div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🦶</span>
+          <span class="exercicio-num">01</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Elevación de Pantorrillas de Pie</div>
+          <div class="exercicio-series">3 series · 20 repeticiones</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Parate con los pies al ancho de las caderas. Subí en puntas de pie despacio (2 segundos para subir, 2 para bajar). Sostené 1 segundo arriba. Podés apoyar las manos en la pared.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">A la pantorrilla la llaman el 'segundo corazón'. Cada contracción bombea sangre venosa de vuelta al corazón y reduce la acumulación de líquido en las piernas.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Hacelo despacio. La velocidad no importa: lo que activa la circulación es la contracción completa del músculo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🚶</span>
+          <span class="exercicio-num">02</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Marcha en el Lugar con Rodillas Altas</div>
+          <div class="exercicio-series">2 series · 60 segundos</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">De pie, levantá las rodillas alternadamente hasta la altura de la cadera, como si estuvieras marchando. Balanceá los brazos con naturalidad. Mantené el abdomen levemente contraído.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">Activa al mismo tiempo los músculos de los muslos, los glúteos y el abdomen, aumenta el flujo de sangre en todo el tren inferior y estimula el sistema linfático.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Si tenés las rodillas sensibles, levantalas menos. Lo importante es el movimiento continuo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">🧘</span>
+          <span class="exercicio-num">03</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Piernas Arriba Acostada</div>
+          <div class="exercicio-series">1 vez · 5 minutos</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Acostate boca arriba cerca de una pared. Levantá las piernas y apoyalas en la pared, formando una L. Relajá los brazos a los costados del cuerpo. Respirá profundo y quedate así 5 minutos.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">La gravedad ayuda a que la sangre acumulada en las piernas vuelva al corazón. Es uno de los movimientos más poderosos para deshinchar y activar la circulación venosa sin ningún esfuerzo.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Poné un almohadón debajo de la cadera para elevarla apenas. Eso potencia el retorno venoso.</p>
+        </div>
+      </div>
+    </div>
+    <div class="exercicio-card">
+      <div class="exercicio-header">
+        <div class="exercicio-num-wrap">
+          <span class="exercicio-icone">⭕</span>
+          <span class="exercicio-num">04</span>
+        </div>
+        <div class="exercicio-meta">
+          <div class="exercicio-nome">Rotación de Tobillos</div>
+          <div class="exercicio-series">3 series · 15 rotaciones para cada lado</div>
+        </div>
+      </div>
+      <div class="exercicio-body">
+        <div class="exercicio-label">Cómo hacerlo</div>
+        <p class="exercicio-texto">Sentada o acostada, estirá una pierna. Hacé círculos con el pie: 15 veces en sentido horario y 15 en sentido antihorario. Cambiá de pierna. Mové solo el tobillo, sin mover la rodilla.</p>
+        <div class="exercicio-label" style="margin-top:12px">Por qué funciona</div>
+        <p class="exercicio-texto">La articulación del tobillo tiene una red muy rica de vasos sanguíneos y linfáticos. Moverla activa la microcirculación local y previene el edema que se forma a lo largo del día.</p>
+        <div class="dica-box">
+          <span class="dica-icon">💡</span>
+          <p class="dica-texto">Ideal para hacer mientras mirás la tele o antes de dormir. Si pasás mucho tiempo sentada, hacelo 2 o 3 veces por día.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
