@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La carta de emergencia</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--v900:#0E2A1E;--v800:#16382A;--v700:#2A4D3C;--v500:#3F6B55;--d300:#E8CC81;--d500:#C7A24C;--d700:#9C7A2A;--c50:#FBF8F1;--c100:#F4F0E6;--ink:#1C3326;--muted:#5B6B62;--rojo:#B3432E}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--c100)}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased}
+.page{max-width:28rem;margin:0 auto;padding:1rem 1rem 3rem}
+.top{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1rem}
+.backlink{display:inline-flex;align-items:center;gap:.35rem;border:1px solid rgba(156,122,42,.35);background:var(--c50);color:var(--v700);border-radius:9999px;padding:.45rem .9rem;font:600 13px Poppins,sans-serif;cursor:pointer}
+.tag{font:600 11px Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--d700)}
+.eyebrow{font:600 12px Poppins,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--d700);margin-bottom:.35rem}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;line-height:1.05;color:var(--v800);font-weight:700}
+h1 em{font-style:italic;color:var(--d700)}
+.lead{margin-top:.5rem;color:var(--muted);font-size:14.5px}
+.medal{display:grid;place-items:center;width:44px;height:44px;border-radius:9999px;background:linear-gradient(150deg,#F2DCA0,#C7A24C,#8C6D26);color:var(--v900);font:700 15px 'Cormorant Garamond',serif;box-shadow:0 6px 16px rgba(156,122,42,.3)}
+.card{background:var(--c50);border:1px solid rgba(156,122,42,.2);border-radius:22px;overflow:hidden;box-shadow:0 10px 26px rgba(14,42,30,.06);margin-top:1.25rem}
+.card .img{position:relative;aspect-ratio:3/2;background:linear-gradient(155deg,var(--v800),var(--v500));overflow:hidden}
+.card .img img{width:100%;height:100%;object-fit:cover;display:block}
+.card .img .lab{position:absolute;left:12px;top:12px;background:rgba(14,42,30,.82);color:var(--d300);border-radius:9999px;padding:.3rem .75rem;font:600 11px Poppins,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.card .body{padding:1rem 1rem 1.1rem}
+.card h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.1;color:var(--v800);font-weight:700}
+.porcion{margin-top:.4rem;font-size:13.5px;color:var(--muted)}
+.orden{margin-top:.9rem;display:grid;gap:.5rem}
+.paso{display:flex;gap:.75rem;align-items:flex-start;background:#fff;border:1px solid rgba(156,122,42,.18);border-radius:14px;padding:.7rem .75rem}
+.paso .n{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:9999px;background:linear-gradient(150deg,#F2DCA0,#C7A24C,#8C6D26);color:var(--v900);font:700 14px Poppins,sans-serif}
+.paso .q{font:600 11px Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--d700)}
+.paso .t{font-size:14px;color:var(--ink);margin-top:.1rem}
+.tip{margin-top:.8rem;display:flex;gap:.6rem;background:rgba(199,162,76,.12);border-left:3px solid var(--d500);border-radius:0 12px 12px 0;padding:.65rem .75rem;font-size:13.5px;color:var(--v700)}
+.tip b{color:var(--d700)}
+.regla{margin-top:1rem;background:var(--v800);color:var(--c50);border-radius:20px;padding:1rem 1rem 1.1rem}
+.regla .t{font:600 11px Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--d300)}
+.regla .r{display:flex;align-items:center;justify-content:space-between;margin-top:.6rem;gap:.35rem;font:600 13px Poppins,sans-serif}
+.regla .r span{flex:1;text-align:center;background:rgba(255,255,255,.08);border-radius:12px;padding:.55rem .25rem;line-height:1.15}
+.regla .r i{font-style:normal;color:var(--d300)}
+.regla .r b{display:block;font-size:16px;color:var(--d300)}
+.nav{display:grid;gap:.6rem;margin-top:1.5rem}
+.nav button{display:flex;align-items:center;justify-content:space-between;width:100%;border:1px solid rgba(156,122,42,.25);background:var(--c50);border-radius:16px;padding:.9rem 1rem;font:600 14px Poppins,sans-serif;color:var(--v800);cursor:pointer;text-align:left}
+.nav button span{color:var(--d700)}
+.sec{margin-top:1.75rem}
+.sec h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;color:var(--v800);font-weight:700;line-height:1.1}
+.sec p{margin-top:.4rem;font-size:14px;color:var(--muted)}
+.lista{margin-top:.75rem;display:grid;gap:.4rem}
+.lista li{list-style:none;display:flex;gap:.6rem;align-items:flex-start;background:#fff;border:1px solid rgba(156,122,42,.16);border-radius:12px;padding:.6rem .75rem;font-size:14px}
+.lista li::before{content:"✓";color:var(--v500);font-weight:700;flex:none}
+.lista.no li::before{content:"✗";color:var(--rojo)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.75rem}
+.chip{background:#fff;border:1px solid rgba(156,122,42,.18);border-radius:12px;padding:.6rem .7rem;font-size:13px}
+.chip b{display:block;color:var(--d700);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.15rem}
+.swap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;background:#fff;border:1px solid rgba(156,122,42,.16);border-radius:12px;padding:.55rem .7rem;font-size:13.5px}
+.swap .a{color:var(--muted);text-decoration:line-through}
+.swap .f{color:var(--d700);font-weight:700}
+.swap .b{font-weight:600;color:var(--v800)}
+.dato{margin-top:1rem;background:linear-gradient(150deg,#F2DCA0,#C7A24C);border-radius:18px;padding:1rem;color:var(--v900);font-size:14px}
+.dato b{display:block;font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;margin-bottom:.25rem}
+.lugar{margin-top:1rem;background:var(--c50);border:1px solid rgba(156,122,42,.2);border-radius:20px;padding:1rem}
+.lugar h3{display:flex;align-items:center;gap:.5rem;font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--v800)}
+.lugar .lab{margin-top:.75rem;font:600 11px Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--d700)}
+.truco{margin-top:.75rem;background:var(--v800);color:var(--c50);border-radius:14px;padding:.7rem .8rem;font-size:13.5px}
+.truco b{color:var(--d300)}
+.oro{margin-top:1.5rem;text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--v800);padding:0 .5rem}
+.cierre{margin-top:1.5rem;text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--v800);font-style:italic}
+.sem{margin-top:1.25rem;background:var(--v800);color:var(--c50);border-radius:16px;padding:.8rem 1rem}
+.sem b{display:block;font:600 11px Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--d300)}
+.sem span{font-size:14px}
+@media print{.backlink,.nav{display:none!important}.card{break-inside:avoid;box-shadow:none}}
+</style></head><body><div class="page"><div class="top"><button class="backlink" onclick="(window.sendPrompt||parent.sendPrompt||function(){history.back()})('Volver')">‹ Volver</button><span class="tag">Emergencia</span><span class="medal">CS</span></div><div class="eyebrow">La Dieta Anti-Insulina</div><h1>La carta de <em>emergencia</em></h1><p class="lead">Qué pedir en la pizzería, la parrilla o la rotisería sin romper nada. Y qué hacer con el delivery.</p><div class="regla"><div class="t">El orden del plato</div><div class="r"><span><b>1</b>Verdura</span><i>›</i><span><b>2</b>Proteína</span><i>›</i><span><b>3</b>Carbohidrato</span></div></div><div class="lugar"><h3>🍕 Pizzería</h3><div class="lab">Qué pedir</div><ul class="lista"><li>Una ensalada mixta o de rúcula primero, entera.</li><li>2 porciones de muzza, napolitana o de verdura. No 4.</li><li>Masa a la piedra si hay: menos harina que la media masa.</li></ul><div class="lab">Qué evitar</div><ul class="lista no"><li>La fainá arriba de la porción (harina sobre harina).</li><li>Empezar por la pizza con la ensalada mirándote.</li></ul><div class="truco"><b>Truco · </b>Pedí la ensalada 'para ya' y la pizza 'en 10 minutos'. El orden se hace solo.</div></div><div class="lugar"><h3>🥩 Parrilla</h3><div class="lab">Qué pedir</div><ul class="lista"><li>Ensalada criolla o mixta de entrada.</li><li>Vacío, bife de chorizo, entraña o pollo. Una porción.</li><li>Papas o puré para compartir, al final.</li></ul><div class="lab">Qué evitar</div><ul class="lista no"><li>La provoleta antes de la ensalada (es proteína y grasa: va segunda, no primera).</li><li>La canasta de pan mientras esperás.</li></ul><div class="truco"><b>Truco · </b>Dale vuelta la canasta de pan o pedí que no la traigan. Nadie se ofende.</div></div><div class="lugar"><h3>🍗 Rotisería</h3><div class="lab">Qué pedir</div><ul class="lista"><li>Pollo al spiedo y una ensalada de las de la heladera (rusa no: es papa).</li><li>Milanesas al horno con ensalada.</li><li>Tarta de verdura, una porción, con ensalada.</li></ul><div class="lab">Qué evitar</div><ul class="lista no"><li>Papas fritas como acompañamiento principal.</li><li>Pizzetas y empanadas fritas de a 3.</li></ul><div class="truco"><b>Truco · </b>Comprá la ensalada y el pollo por separado: en casa servís la ensalada primero.</div></div><div class="lugar"><h3>🛵 Delivery</h3><div class="lab">Qué pedir</div><ul class="lista"><li>Empanadas: 2 de carne o pollo, con una ensalada que armás en casa en 3 minutos.</li><li>Hamburguesa: lechuga y tomate extra, sacale la tapa de arriba del pan.</li><li>Sushi: ensalada de algas o edamame primero, después los rolls (el arroz es el carbo: 8 piezas, no 16).</li><li>Comida china: chop suey de verduras o pollo con verduras primero, arroz o fideos al final y a medias.</li></ul><div class="lab">Qué evitar</div><ul class="lista no"><li>Combos con papas y gaseosa.</li><li>Comer del envase parada en la cocina: servite en un plato, en orden.</li></ul><div class="truco"><b>Truco · </b>Mientras llega el pedido, cortá un tomate. Ese es tu paso 1.</div></div><p class="oro">Afuera no controlás la cocina, pero siempre controlás el orden. Verdura, proteína, carbohidrato. En cualquier mesa.</p><div class="nav"><button onclick="(window.sendPrompt||parent.sendPrompt||function(){})('Rápidos')">7 platos en 10 minutos<span>›</span></button><button onclick="(window.sendPrompt||parent.sendPrompt||function(){})('Dieta')">Volver a mis 21 días<span>›</span></button></div></div></body></html>

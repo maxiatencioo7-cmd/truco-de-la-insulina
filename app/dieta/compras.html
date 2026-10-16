@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La lista de compras semanal</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--v900:#0E2A1E;--v800:#16382A;--v700:#2A4D3C;--v500:#3F6B55;--d300:#E8CC81;--d500:#C7A24C;--d700:#9C7A2A;--c50:#FBF8F1;--c100:#F4F0E6;--ink:#1C3326;--muted:#5B6B62;--rojo:#B3432E}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--c100)}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased}
+.page{max-width:28rem;margin:0 auto;padding:1rem 1rem 3rem}
+.top{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1rem}
+.backlink{display:inline-flex;align-items:center;gap:.35rem;border:1px solid rgba(156,122,42,.35);background:var(--c50);color:var(--v700);border-radius:9999px;padding:.45rem .9rem;font:600 13px Poppins,sans-serif;cursor:pointer}
+.tag{font:600 11px Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--d700)}
+.eyebrow{font:600 12px Poppins,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--d700);margin-bottom:.35rem}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;line-height:1.05;color:var(--v800);font-weight:700}
+h1 em{font-style:italic;color:var(--d700)}
+.lead{margin-top:.5rem;color:var(--muted);font-size:14.5px}
+.medal{display:grid;place-items:center;width:44px;height:44px;border-radius:9999px;background:linear-gradient(150deg,#F2DCA0,#C7A24C,#8C6D26);color:var(--v900);font:700 15px 'Cormorant Garamond',serif;box-shadow:0 6px 16px rgba(156,122,42,.3)}
+.card{background:var(--c50);border:1px solid rgba(156,122,42,.2);border-radius:22px;overflow:hidden;box-shadow:0 10px 26px rgba(14,42,30,.06);margin-top:1.25rem}
+.card .img{position:relative;aspect-ratio:3/2;background:linear-gradient(155deg,var(--v800),var(--v500));overflow:hidden}
+.card .img img{width:100%;height:100%;object-fit:cover;display:block}
+.card .img .lab{position:absolute;left:12px;top:12px;background:rgba(14,42,30,.82);color:var(--d300);border-radius:9999px;padding:.3rem .75rem;font:600 11px Poppins,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.card .body{padding:1rem 1rem 1.1rem}
+.card h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;line-height:1.1;color:var(--v800);font-weight:700}
+.porcion{margin-top:.4rem;font-size:13.5px;color:var(--muted)}
+.orden{margin-top:.9rem;display:grid;gap:.5rem}
+.paso{display:flex;gap:.75rem;align-items:flex-start;background:#fff;border:1px solid rgba(156,122,42,.18);border-radius:14px;padding:.7rem .75rem}
+.paso .n{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:9999px;background:linear-gradient(150deg,#F2DCA0,#C7A24C,#8C6D26);color:var(--v900);font:700 14px Poppins,sans-serif}
+.paso .q{font:600 11px Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--d700)}
+.paso .t{font-size:14px;color:var(--ink);margin-top:.1rem}
+.tip{margin-top:.8rem;display:flex;gap:.6rem;background:rgba(199,162,76,.12);border-left:3px solid var(--d500);border-radius:0 12px 12px 0;padding:.65rem .75rem;font-size:13.5px;color:var(--v700)}
+.tip b{color:var(--d700)}
+.regla{margin-top:1rem;background:var(--v800);color:var(--c50);border-radius:20px;padding:1rem 1rem 1.1rem}
+.regla .t{font:600 11px Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--d300)}
+.regla .r{display:flex;align-items:center;justify-content:space-between;margin-top:.6rem;gap:.35rem;font:600 13px Poppins,sans-serif}
+.regla .r span{flex:1;text-align:center;background:rgba(255,255,255,.08);border-radius:12px;padding:.55rem .25rem;line-height:1.15}
+.regla .r i{font-style:normal;color:var(--d300)}
+.regla .r b{display:block;font-size:16px;color:var(--d300)}
+.nav{display:grid;gap:.6rem;margin-top:1.5rem}
+.nav button{display:flex;align-items:center;justify-content:space-between;width:100%;border:1px solid rgba(156,122,42,.25);background:var(--c50);border-radius:16px;padding:.9rem 1rem;font:600 14px Poppins,sans-serif;color:var(--v800);cursor:pointer;text-align:left}
+.nav button span{color:var(--d700)}
+.sec{margin-top:1.75rem}
+.sec h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;color:var(--v800);font-weight:700;line-height:1.1}
+.sec p{margin-top:.4rem;font-size:14px;color:var(--muted)}
+.lista{margin-top:.75rem;display:grid;gap:.4rem}
+.lista li{list-style:none;display:flex;gap:.6rem;align-items:flex-start;background:#fff;border:1px solid rgba(156,122,42,.16);border-radius:12px;padding:.6rem .75rem;font-size:14px}
+.lista li::before{content:"✓";color:var(--v500);font-weight:700;flex:none}
+.lista.no li::before{content:"✗";color:var(--rojo)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.75rem}
+.chip{background:#fff;border:1px solid rgba(156,122,42,.18);border-radius:12px;padding:.6rem .7rem;font-size:13px}
+.chip b{display:block;color:var(--d700);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.15rem}
+.swap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;background:#fff;border:1px solid rgba(156,122,42,.16);border-radius:12px;padding:.55rem .7rem;font-size:13.5px}
+.swap .a{color:var(--muted);text-decoration:line-through}
+.swap .f{color:var(--d700);font-weight:700}
+.swap .b{font-weight:600;color:var(--v800)}
+.dato{margin-top:1rem;background:linear-gradient(150deg,#F2DCA0,#C7A24C);border-radius:18px;padding:1rem;color:var(--v900);font-size:14px}
+.dato b{display:block;font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1;margin-bottom:.25rem}
+.lugar{margin-top:1rem;background:var(--c50);border:1px solid rgba(156,122,42,.2);border-radius:20px;padding:1rem}
+.lugar h3{display:flex;align-items:center;gap:.5rem;font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--v800)}
+.lugar .lab{margin-top:.75rem;font:600 11px Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--d700)}
+.truco{margin-top:.75rem;background:var(--v800);color:var(--c50);border-radius:14px;padding:.7rem .8rem;font-size:13.5px}
+.truco b{color:var(--d300)}
+.oro{margin-top:1.5rem;text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--v800);padding:0 .5rem}
+.cierre{margin-top:1.5rem;text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--v800);font-style:italic}
+.sem{margin-top:1.25rem;background:var(--v800);color:var(--c50);border-radius:16px;padding:.8rem 1rem}
+.sem b{display:block;font:600 11px Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--d300)}
+.sem span{font-size:14px}
+@media print{.backlink,.nav{display:none!important}.card{break-inside:avoid;box-shadow:none}}
+</style></head><body><div class="page"><div class="top"><button class="backlink" onclick="(window.sendPrompt||parent.sendPrompt||function(){history.back()})('Volver')">‹ Volver</button><span class="tag">Compras</span><span class="medal">CS</span></div><div class="eyebrow">La Dieta Anti-Insulina</div><h1>La lista de <em>compras</em> semanal</h1><p class="lead">Verdulería, carnicería y súper, y dietética. Una compra, toda la semana resuelta.</p><div class="sem"><b>Semana 1 · Reset</b><span>Una compra para los 7 días.</span></div>
+<div class="sec"><h3>Verdulería</h3><ul class="lista"><li>Lechuga, rúcula y espinaca</li><li>Tomates (2 kg) y tomates cherry</li><li>Zanahorias (1 kg)</li><li>Cebollas y 1 cebolla morada</li><li>Calabaza (1 grande) y zapallitos (6)</li><li>Acelga (1 atado) y brócoli (1)</li><li>Repollo (½) y pepino (2)</li><li>Morrones (2), zapallo, puerro</li><li>Papas (1 kg) y batatas (2)</li><li>Palta (2), limones (4), perejil y romero</li></ul></div>
+<div class="sec"><h3>Carnicería y súper</h3><ul class="lista"><li>Nalga para milanesas (600 g) y cuadril (400 g)</li><li>Pollo: 1 entero o 4 cuartos + 2 pechugas</li><li>Carne magra en cubos para guiso (400 g)</li><li>Filetes de merluza (4)</li><li>Huevos (1 maple)</li><li>Queso port salut o fresco, queso rallado</li><li>Atún al natural (2 latas)</li><li>Pan rallado, arroz, fideos de sopa</li><li>Aceite de oliva, vinagre de manzana, sal, pimienta</li><li>Pan integral (1)</li></ul></div>
+<div class="sec"><h3>Dietética</h3><ul class="lista"><li>Lentejas (500 g)</li><li>Avena arrollada (para rebozar)</li><li>Semillas de chía y lino (las del licuado)</li><li>Canela, cacao amargo, psyllium (los del licuado)</li><li>Yogur natural sin azúcar (opcional)</li></ul></div><div class="sem"><b>Semana 2 · Activación</b><span>Una compra para los 7 días.</span></div>
+<div class="sec"><h3>Verdulería</h3><ul class="lista"><li>Rúcula, espinaca y lechuga</li><li>Tomates (2 kg), cherry, albahaca</li><li>Zanahorias, cebollas, morrones</li><li>Brócoli (2), zapallitos (4), berenjenas (3)</li><li>Calabaza (1) y batatas (2)</li><li>Champiñones (1 bandeja)</li><li>Repollo (½), apio (1)</li><li>Papas (1 kg, para el pastel y los ñoquis)</li><li>Limones (4), perejil, ajo</li></ul></div>
+<div class="sec"><h3>Carnicería y súper</h3><ul class="lista"><li>Carne picada magra (1 kg: tuco, pastel, empanadas)</li><li>Pechugas (4) y pollo trozado para el disco (1 kg)</li><li>Merluza o trucha (4 filetes)</li><li>Huevos (1 maple)</li><li>Muzzarella (300 g), jamón cocido (200 g), queso rallado</li><li>Tapas de empanadas (1 paquete) y harina (para la pizza y los ñoquis)</li><li>Fideos (500 g), arroz</li><li>Puré de tomate (2), aceitunas</li></ul></div>
+<div class="sec"><h3>Dietética</h3><ul class="lista"><li>Harina integral (mezclar mitad y mitad)</li><li>Ricota (para los ñoquis livianos)</li><li>Lentejas</li><li>Los del licuado: chía, lino, canela, cacao, psyllium</li></ul></div><div class="sem"><b>Semana 3 · Consolidación</b><span>Una compra para los 7 días.</span></div>
+<div class="sec"><h3>Verdulería</h3><ul class="lista"><li>Hojas verdes variadas</li><li>Tomates, pepino, cebolla morada, perejil</li><li>Brócoli, zanahorias, morrones, repollo</li><li>Zapallitos, berenjenas, cebollas (bandeja de horno)</li><li>Espinaca (2 atados), champiñones</li><li>Calabaza (1)</li><li>Papas (½ kg) y batatas (2)</li><li>Limones, jengibre, ajo</li></ul></div>
+<div class="sec"><h3>Carnicería y súper</h3><ul class="lista"><li>Bondiola (600 g) o cerdo magro</li><li>Carne para wok en tiras (500 g) y picada magra (500 g)</li><li>Pechugas (4) y 1 pollo entero para el domingo</li><li>Huevos (1 maple)</li><li>Queso fresco, port salut, queso rallado</li><li>Garbanzos (2 latas) y atún (2 latas)</li><li>Arroz integral, fideos de arroz</li><li>Pan integral tipo hamburguesa (1 paquete)</li><li>Salsa de soja baja en sodio</li></ul></div>
+<div class="sec"><h3>Dietética</h3><ul class="lista"><li>Quinoa (250 g)</li><li>Garbanzos secos (si preferís cocinarlos)</li><li>Los del licuado: chía, lino, canela, cacao, psyllium</li></ul></div><div class="sec"><h3>Según tu presupuesto</h3><div class="lista"><li><div><b>Ajustado.</b> Priorizá huevos, lentejas, garbanzos, pollo entero, merluza, carne picada y las verduras de estación. Con eso salen 16 de las 21 cenas.</div></li><li><div><b>Medio.</b> Sumá nalga para milanesas, cuadril, bondiola y quesos. Es la lista tal cual está.</div></li><li><div><b>Holgado.</b> Cambiá merluza por trucha o salmón, sumá palta todos los días y frutos secos para la merienda.</div></li></div></div><div class="sec"><h3>15 intercambios: cuando no hay plata o no hay ganas</h3><div class="lista" style="gap:.45rem"><div class="swap"><span class="a">Pollo</span><span class="f">→</span><span class="b">Huevos (2 huevos = 1 porción de proteína)</span></div><div class="swap"><span class="a">Salmón o trucha</span><span class="f">→</span><span class="b">Merluza o caballa en lata</span></div><div class="swap"><span class="a">Carne de cuadril</span><span class="f">→</span><span class="b">Carne picada magra o lentejas</span></div><div class="swap"><span class="a">Bondiola</span><span class="f">→</span><span class="b">Pechuga de pollo</span></div><div class="swap"><span class="a">Quinoa</span><span class="f">→</span><span class="b">Arroz integral o arroz común frío</span></div><div class="swap"><span class="a">Fideos de arroz</span><span class="f">→</span><span class="b">Fideos comunes, la mitad de la porción</span></div><div class="swap"><span class="a">Batata</span><span class="f">→</span><span class="b">Calabaza</span></div><div class="swap"><span class="a">Pan integral</span><span class="f">→</span><span class="b">Pan común, la mitad</span></div><div class="swap"><span class="a">Rúcula</span><span class="f">→</span><span class="b">Lechuga o repollo</span></div><div class="swap"><span class="a">Tomates cherry</span><span class="f">→</span><span class="b">Tomate común</span></div><div class="swap"><span class="a">Brócoli</span><span class="f">→</span><span class="b">Acelga o zapallito</span></div><div class="swap"><span class="a">Champiñones</span><span class="f">→</span><span class="b">Cebolla y morrón salteados</span></div><div class="swap"><span class="a">Palta</span><span class="f">→</span><span class="b">Huevo duro (para la ensalada completa)</span></div><div class="swap"><span class="a">Queso port salut</span><span class="f">→</span><span class="b">Queso fresco o ricota</span></div><div class="swap"><span class="a">Tarta casera</span><span class="f">→</span><span class="b">Omelette con la misma verdura (5 minutos)</span></div></div></div><div class="nav"><button onclick="(window.sendPrompt||parent.sendPrompt||function(){})('Dieta')">Volver a mis 21 días<span>›</span></button></div></div></body></html>
