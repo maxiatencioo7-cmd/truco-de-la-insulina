@@ -14,7 +14,7 @@ const CONFIG = {
   VERSION: "versión 1.2",
 
   // --- Acceso por correo de compra (ver integracion/LEEME-integracion.md) ---
-  ACCESS_URL: "",   // Web App de Apps Script (planilla "Compras Truco Insulina"). Vacío = modo de prueba: cualquier correo entra.
+  ACCESS_URL: "https://script.google.com/macros/s/AKfycbz0zsbgcORjtZs5egRx_QvSNgWDB2K1EhE4amqcOEw2V-V2gtCLo9oOcASZ_nZEfeKOZQ/exec",   // Web App de Apps Script (planilla "Compras Truco Insulina"), conectada el 2026-10-16. Vacío = modo de prueba.
   PRODUCTO_BASE: "secreto_insulina",       // clave del producto principal en la planilla
   PRODUCTO_CLUB: "club_secreto",           // clave del upsell (Club Premium) en la planilla
   PRODUCTO_DIETA: "dieta_anti_insulina",   // clave del OTO 1 La Dieta Anti-Insulina (OTO y downsell desbloquean lo mismo)
