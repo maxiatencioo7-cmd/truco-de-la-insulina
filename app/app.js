@@ -27,7 +27,7 @@ const CONFIG = {
   // --- Club Premium (upsell dentro de la app; página #/club) ---
   CLUB_URL: "https://el-truco-de-la-insulina.impultienda.ar/checkout?p=1d608b15-6b5b-486e-9218-b813743a5428",   // checkout de la Doctora en la tienda del Truco (cambiado 2026-10-03; antes tereset). Vacío = el botón avisa que todavía no está disponible
   CLUB_PRECIO: "$ 27.997",                 // precio del Club (OTO 2 "La Doctora del Truco en tu WhatsApp") decidido el 2026-09-17; antes $ 11.299
-  CLUB_VSL_URL: "vsl-club.html?v=1",       // VSL del Club: reproductor VTurb, vive en vsl-club.html (cargado el 2026-09-29). También acepta embed de Panda/YouTube o .mp4. Vacío = recuadro "video pendiente"
+  CLUB_VSL_URL: "vsl-club.html?v=2",       // VSL del Club: reproductor VTurb, vive en vsl-club.html (cargado el 2026-09-29). También acepta embed de Panda/YouTube o .mp4. Vacío = recuadro "video pendiente"
   CLUB_VSL_VERTICAL: true,                 // el VSL del OTO 2 se graba en 9:16 (decidido 2026-09-17)
   WHATSAPP: "",                            // número de la Dra. para miembros del Club, ej. "5491122334455" (sin +). Vacío = el botón avisa
   WHATSAPP_TEXTO: "Hola Doctora, soy del Club. Te escribo por mi rutina.",
