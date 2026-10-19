@@ -1,6 +1,6 @@
 /* Club del Truco — service worker: la app abre rápido y funciona sin conexión.
    Cuando cambies archivos, subí el número de versión para renovar el caché. */
-const CACHE = "club-truco-v1";
+const CACHE = "club-truco-v2";
 const FILES = ["./", "./index.html", "./styles.css?v=15", "./app.js?v=15", "./dieta-platos.js?v=15", "./noche-data.js?v=15", "./manifest.json", "./assets/logo.jpg", "./icons/icon-192.png", "./icons/icon-512.png", "./evolucion.html"];
 
 self.addEventListener("install", e => {
