@@ -1,5 +1,5 @@
 /* =====================================================================
-   Club del Truco — app.js
+   Club del Truco de la Insulina — app.js
    Réplica en JavaScript plano (sin React, sin compilar) de la app brasileña
    "Clube do Segredo". Rutas por hash: #/ (inicio), #/jornada, #/regalos,
    #/club, #/perfil. Acceso por correo de compra (sin contraseña), igual que
@@ -8,7 +8,7 @@
 
 /* ---------- CONFIG: lo que podés tocar sin leer el resto ---------- */
 const CONFIG = {
-  MARCA: "Club del Truco",
+  MARCA: "Club del Truco de la Insulina",
   PROGRAMA: "El Truco de la Insulina",
   DRA: "Dra. del Truco",                 // cómo se llama la guía del Club (el original: "Dra. do Segredo")
   VERSION: "versión 1.2",
@@ -873,7 +873,7 @@ window.instalarApp = async () => {
   if (avisoInstalar) {                                   // Android/Chrome: aviso nativo
     avisoInstalar.prompt();
     const r = await avisoInstalar.userChoice.catch(() => null); avisoInstalar = null;
-    if (r && r.outcome === "accepted") { state.instalada = true; save(); toast("¡Listo! Buscá el ícono “Club del Truco” en tu celular 💛"); viewHome(); }
+    if (r && r.outcome === "accepted") { state.instalada = true; save(); toast("¡Listo! Buscá el ícono “Club del Truco de la Insulina” en tu celular 💛"); viewHome(); }
     return;
   }
   if (esIOS()) {
@@ -884,8 +884,8 @@ window.instalarApp = async () => {
       ${safari ? "" : `<p class="lead">En iPhone conviene hacerlo desde <b>Safari</b>. Si no te aparece la opción, copiá el link y abrilo en Safari.</p>`}
       ${paso(1, SVG_COMPARTIR, `Tocá el botón <b>Compartir</b> (el cuadrado con la flecha hacia arriba), abajo en el medio de la pantalla.`)}
       ${paso(2, SVG_AGREGAR, `Deslizá hacia abajo y tocá <b>“Agregar a inicio”</b>.`)}
-      ${paso(3, "", `Arriba a la derecha tocá <b>“Agregar”</b>. ¡Listo! Te aparece el ícono <b>Club del Truco</b> junto a tus apps.`)}
-      <img class="install-icono" src="icons/icon-192.png" alt="Ícono Club del Truco">
+      ${paso(3, "", `Arriba a la derecha tocá <b>“Agregar”</b>. ¡Listo! Te aparece el ícono <b>Club del Truco de la Insulina</b> junto a tus apps.`)}
+      <img class="install-icono" src="icons/icon-192.png" alt="Ícono Club del Truco de la Insulina">
       <button class="btn soft lg full" onclick="marcarInstalada()">Ya la agregué ✓</button>
       ${safari ? "" : `<button class="btn outline lg full" style="margin-top:.5rem" onclick="copiarLinkApp('${esc(link)}')">${ic("FileText")} Copiar el link</button>`}
     </div>`, "Descargá la app");
@@ -894,8 +894,8 @@ window.instalarApp = async () => {
   abrirHoja(`<div class="install-sheet">
     ${paso(1, SVG_MENU, `Tocá los <b>tres puntitos</b> arriba a la derecha de Chrome.`)}
     ${paso(2, SVG_AGREGAR, `Elegí <b>“Instalar app”</b> o <b>“Agregar a la pantalla principal”</b>.`)}
-    ${paso(3, "", `Confirmá con <b>“Instalar”</b>. Te queda el ícono <b>Club del Truco</b> junto a tus apps.`)}
-    <img class="install-icono" src="icons/icon-192.png" alt="Ícono Club del Truco">
+    ${paso(3, "", `Confirmá con <b>“Instalar”</b>. Te queda el ícono <b>Club del Truco de la Insulina</b> junto a tus apps.`)}
+    <img class="install-icono" src="icons/icon-192.png" alt="Ícono Club del Truco de la Insulina">
     <button class="btn soft lg full" onclick="marcarInstalada()">Ya la instalé ✓</button>
   </div>`, "Descargá la app");
 };

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Club del Truco — Mi evolución</title>
+<title>Club del Truco de la Insulina — Mi evolución</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -210,12 +210,12 @@
     <!-- tarjeta para la captura compartible -->
     <div class="share-card" id="shareCard">
       <div class="sc-logo">CS</div>
-      <div class="sc-brand">Club del Truco</div>
+      <div class="sc-brand">Club del Truco de la Insulina</div>
       <div class="sc-title">Mi evolución</div>
       <div class="sc-big" id="scBig">—</div>
       <div class="sc-label" id="scLabel"></div>
       <div class="sc-sub" id="scSub"></div>
-      <div class="sc-foot">21 días • Club del Truco</div>
+      <div class="sc-foot">21 días • Club del Truco de la Insulina</div>
     </div>
 
   </main>
@@ -326,12 +326,12 @@
     }
     document.getElementById('shareBtn').addEventListener('click', async function(){
       refreshShareCard(); const card = document.getElementById('shareCard');
-      if (typeof html2canvas !== 'function'){ if (navigator.share) { navigator.share({ title:'Mi evolución', text:'¡Mirá mi evolución en el Club del Truco!' }); } return; }
+      if (typeof html2canvas !== 'function'){ if (navigator.share) { navigator.share({ title:'Mi evolución', text:'¡Mirá mi evolución en el Club del Truco de la Insulina!' }); } return; }
       try{
         const canvas = await html2canvas(card, { scale:2, backgroundColor:null, logging:false });
         canvas.toBlob(async (blob) => {
           const file = new File([blob], 'mi-evolucion.png', { type:'image/png' });
-          if (navigator.canShare && navigator.canShare({ files:[file] })){ await navigator.share({ files:[file], title:'Mi evolución', text:'Mi evolución en el Club del Truco' }); }
+          if (navigator.canShare && navigator.canShare({ files:[file] })){ await navigator.share({ files:[file], title:'Mi evolución', text:'Mi evolución en el Club del Truco de la Insulina' }); }
           else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mi-evolucion.png'; a.click(); }
         }, 'image/png');
       }catch(err){ console.error(err); }

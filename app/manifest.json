@@ -1,6 +1,6 @@
 {
-  "name": "Club del Truco",
-  "short_name": "Club del Truco",
+  "name": "Club del Truco de la Insulina",
+  "short_name": "Club del Truco de la Insulina",
   "description": "Tu rutina de 21 días de El Truco de la Insulina",
   "start_url": "./index.html",
   "scope": "./",
