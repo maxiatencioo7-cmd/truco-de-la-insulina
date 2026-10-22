@@ -500,6 +500,26 @@ function viewJornada() {
 window.abrirDia = d => abrirHtml(`dias/dia-${pad2(d)}${esPremium() ? "-premium" : ""}.html`, `Día ${d}`);
 
 /* Oferta interna (aparece sola algunas veces, como en la app original) */
+
+/* Atribución de las compras hechas desde la app (igual que Noctra): el quiz guarda en este navegador
+   los UTMs del anuncio (localStorage "truco_attr_ls", 30 días) y acá se los pasamos al checkout.
+   Si no hay datos guardados, la venta queda marcada como utm_source=app para verla agrupada en UTMify. */
+const ATTR_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_adset", "utm_id", "fbclid", "gclid", "ttclid", "msclkid"];
+function conAtrib(url) {
+  try {
+    const u = new URL(url, location.href);
+    let st = {};
+    try { const raw = JSON.parse(localStorage.getItem("truco_attr_ls") || "null"); if (raw && raw.t && Date.now() - raw.t < 30 * 864e5) st = raw.v || {}; } catch (e) {}
+    const hayUtm = ATTR_KEYS.some((k) => st[k]);
+    if (hayUtm) ATTR_KEYS.forEach((k) => { if (st[k] && !u.searchParams.has(k)) u.searchParams.set(k, st[k]); });
+    else { if (!u.searchParams.has("utm_source")) u.searchParams.set("utm_source", "app"); if (!u.searchParams.has("utm_campaign")) u.searchParams.set("utm_campaign", "club"); }
+    const ck = (n) => { const m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; };
+    const fbp = ck("_fbp"), fbc = ck("_fbc");
+    if (fbp && !u.searchParams.has("fbp")) u.searchParams.set("fbp", fbp);
+    if (fbc && !u.searchParams.has("fbc")) u.searchParams.set("fbc", fbc);
+    return u.toString();
+  } catch (e) { return url; }
+}
 const bumpVisible = () => { const B = CONFIG.BUMP; return !!(B.activo && B.url && !(B.producto && tiene(B.producto))); };
 function bumpAutomatico() {
   if (!bumpVisible()) return; const B = CONFIG.BUMP;
@@ -520,7 +540,7 @@ window.abrirBump = () => {
 window.irBump = () => {
   state.bump = { ...(state.bump || {}), cerrada: true }; save();
   const u = CONFIG.BUMP.url; const email = state.cuenta?.email ? (u.includes("?") ? "&" : "?") + "e=" + encodeURIComponent(state.cuenta.email) : "";
-  window.open(u + email, "_blank", "noopener,noreferrer"); cerrarHoja();
+  window.open(conAtrib(u + email), "_blank", "noopener,noreferrer"); cerrarHoja();
 };
 
 /* ---------- DIETA (#/dieta) ---------- */
@@ -649,7 +669,7 @@ function nocheLanding() {
 window.comprarNoche = () => {
   const u = CONFIG.NOCHE_URL; if (!u) return;
   const email = state.cuenta?.email ? (u.includes("?") ? "&" : "?") + "e=" + encodeURIComponent(state.cuenta.email) : "";
-  window.open(u + email, "_blank", "noopener");
+  window.open(conAtrib(u + email), "_blank", "noopener");
 };
 function nocheRitual() {
   const R = NOCHE.ritual;
@@ -787,7 +807,7 @@ function viewClub() {
 window.irClub = () => {
   if (!CONFIG.CLUB_URL) { toast("El checkout del Club todavía no está configurado.", "info"); return; }
   const email = state.cuenta?.email ? (CONFIG.CLUB_URL.includes("?") ? "&" : "?") + "e=" + encodeURIComponent(state.cuenta.email) : "";
-  window.open(CONFIG.CLUB_URL + email, "_blank", "noopener");
+  window.open(conAtrib(CONFIG.CLUB_URL + email), "_blank", "noopener");
 };
 
 /* ---------- MI CUENTA ---------- */

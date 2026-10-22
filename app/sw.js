@@ -1,7 +1,7 @@
 /* Club del Truco de la Insulina — service worker: la app abre rápido y funciona sin conexión.
    Cuando cambies archivos, subí el número de versión para renovar el caché. */
-const CACHE = "club-truco-v3";
-const FILES = ["./", "./index.html", "./styles.css?v=16", "./app.js?v=16", "./dieta-platos.js?v=16", "./noche-data.js?v=16", "./manifest.json", "./assets/logo.jpg", "./icons/icon-192.png", "./icons/icon-512.png", "./evolucion.html"];
+const CACHE = "club-truco-v4";
+const FILES = ["./", "./index.html", "./styles.css?v=17", "./app.js?v=17", "./dieta-platos.js?v=17", "./noche-data.js?v=17", "./manifest.json", "./assets/logo.jpg", "./icons/icon-192.png", "./icons/icon-512.png", "./evolucion.html"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.all(FILES.map(f => c.add(f).catch(() => undefined)))).then(() => self.skipWaiting()));
